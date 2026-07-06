@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fayzaan Saeed — AI Builder Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gasoek+One&family=Alumni+Sans:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#8B5CF6;
+    --ink:#0B0B0F;
+    --accent:#F59E0B;
+    --contrast:#FFFFFF;
+    --cream:#FFF8EC;
+    --pink:#EC4899;
+    --sky:#38BDF8;
+    --emerald:#34D399;
+    --coral:#F87171;
+    --violet:#A78BFA;
+    --radius:20px;
+    --border-w:4px;
+    --shadow-pop:8px 8px 0 var(--ink);
+    --shadow-pop-sm:5px 5px 0 var(--ink);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--ink);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  .display{ font-family:'Gasoek One', sans-serif; }
+  .giant{ font-family:'Alumni Sans', sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.01em; }
+
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 32px; }
+
+  section, footer{ position:relative; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--ink);
+    border-bottom:var(--border-w) solid var(--accent);
+  }
+  nav .nav-inner{
+    max-width:1100px;
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  nav .brand{
+    font-family:'Gasoek One', sans-serif;
+    font-size:1.15rem;
+    color:var(--contrast);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  nav .brand .dot{
+    width:14px; height:14px;
+    background:var(--accent);
+    border:2px solid var(--contrast);
+    border-radius:4px;
+    display:inline-block;
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:26px;
+    font-size:0.85rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  nav a{
+    text-decoration:none;
+    color:var(--contrast);
+    position:relative;
+    transition:color 0.2s ease;
+  }
+  nav a::before, nav a::after{
+    content:"•";
+    color:var(--accent);
+    opacity:0;
+    transition:opacity 0.2s ease;
+    margin:0 4px;
+  }
+  nav a:hover::before, nav a:hover::after{ opacity:1; }
+  nav a:hover{ color:var(--accent); }
+
+  /* ---------- WAVE DIVIDER ---------- */
+  .section-wave{
+    position:absolute;
+    top:-1px; left:0; width:100%;
+    line-height:0;
+    transform:translateY(-99%);
+    z-index:2;
+    pointer-events:none;
+  }
+  .section-wave svg{ display:block; width:100%; height:70px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--purple);
+    padding:150px 32px 140px;
+    overflow:visible;
+  }
+  .hero-inner{
+    max-width:1100px;
+    margin:0 auto;
+    position:relative;
+    z-index:3;
+  }
+  .stamp{
+    position:absolute;
+    top:-40px;
+    right:24px;
+    width:120px; height:120px;
+    border-radius:50%;
+    background:var(--accent);
+    border:var(--border-w) solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:spin 16s linear infinite;
+    z-index:4;
+  }
+  .stamp svg{ width:104px; height:104px; }
+  @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
+
+  .hero h1.giant{
+    font-size:clamp(2.8rem, 9vw, 7.2rem);
+    font-weight:900;
+    line-height:0.92;
+    color:var(--ink);
+    margin-bottom:36px;
+    text-shadow:6px 6px 0 var(--accent);
+  }
+  .hero-card{
+    background:var(--cream);
+    border:5px solid var(--ink);
+    border-radius:var(--radius);
+    box-shadow:12px 12px 0 var(--ink);
+    padding:32px 36px;
+    max-width:460px;
+    animation:heroCardFloat 5s ease-in-out infinite;
+  }
+  @keyframes heroCardFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+  }
+  .hero-card .name{
+    font-family:'Gasoek One', sans-serif;
+    font-size:1.5rem;
+    color:var(--ink);
+  }
+  .hero-card .divider{
+    border:none;
+    border-top:2px dashed var(--ink);
+    margin:16px 0;
+    opacity:0.5;
+  }
+  .hero-card .title{
+    font-size:1rem;
+    font-weight:600;
+    color:var(--ink);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- ROBOT MASCOT (overlaps the right end of the guitar) ---------- */
+  .hero-illustration{
+    position:absolute;
+    right:-40px;
+    bottom:-90px;
+    width:260px;
+    z-index:3;
+    pointer-events:none;
+  }
+  @media (max-width:860px){
+    .hero-illustration{ display:none; }
+  }
+
+  @media (max-width:860px){
+    .stamp{ width:88px; height:88px; top:-20px; }
+    .stamp svg{ width:74px; height:74px; }
+  }
+
+  /* ---------- INTERACTIVE GUITAR STRIP ---------- */
+  /* Theming: override these variables to restyle without touching JS.
+     The strip blends into any section whose background matches --guitar-bg.
+     Height: change height below (and the -140px bottom margin keeps it
+     flush against the marquee). Bleed direction is handled in the JS notes. */
+  .guitar-strip{
+    --guitar-bg:var(--purple);
+    --guitar-body:var(--ink);
+    --guitar-string:var(--cream);
+    --guitar-accent:var(--accent);
+    position:relative;
+    z-index:2;
+    height:400px;
+    width:100vw;
+    margin:70px 0 -140px calc(50% - 50vw); /* full-bleed off both edges */
+    background:var(--guitar-bg);
+  }
+  .guitar-strip svg{
+    width:100%; height:100%;
+    display:block;
+    touch-action:none; /* prevents scroll-jank while plucking on mobile */
+    cursor:pointer;
+  }
+  .gs-fill{ fill:var(--guitar-body); }
+  .gs-hole{ fill:#000; }
+  .gs-ring-outer{ fill:none; stroke:var(--guitar-accent); stroke-width:6; }
+  .gs-ring-inner{ fill:none; stroke:var(--guitar-string); stroke-width:2.5; opacity:.8; }
+  .gs-bridge{ fill:var(--guitar-string); stroke:var(--guitar-body); stroke-width:4; }
+  .gs-pins circle{ fill:var(--guitar-body); }
+  .gs-fret{ stroke:var(--guitar-string); stroke-width:4; opacity:.25; }
+  .gs-dot{ fill:var(--guitar-accent); opacity:.9; }
+  .gs-string{ fill:none; stroke:var(--guitar-string); stroke-linecap:round; }
+  .gs-string.gs-active{ stroke:var(--guitar-accent); }
+
+  /* "click me" callout — sits on the top of the upper bout (black body,
+     left side), above the strings and sound-hole rings */
+  .gs-callout{
+    position:absolute;
+    top:18px;
+    left:130px;
+    z-index:3;
+    pointer-events:none; /* never blocks the strings */
+    animation:gs-bob 2.2s ease-in-out infinite;
+  }
+  .gs-callout-box{
+    font-family:'Gasoek One', sans-serif;
+    font-size:0.95rem;
+    background:var(--cream);
+    color:var(--ink);
+    border:3px solid var(--ink);
+    border-radius:12px;
+    padding:7px 16px;
+    box-shadow:4px 4px 0 var(--ink);
+    transform:rotate(-4deg);
+    white-space:nowrap;
+  }
+  @keyframes gs-bob{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(7px); }
+  }
+  @media (max-width:640px){
+    .guitar-strip{ height:380px; margin-top:50px; }
+    .gs-callout{ left:96px; top:14px; }
+    .gs-callout-box{ font-size:0.82rem; }
+  }
+
+  /* ---------- MARQUEE ---------- */
+  /* Two identical copies sit side by side (.marquee-copy), and the track
+     animates exactly half its own width (-50%) — so the moment copy 1
+     scrolls fully offscreen, copy 2 is sitting exactly where copy 1
+     started, and the loop restarts with zero gap.
+     This only stays gapless if EACH copy is at least as wide as the
+     visible bar — a single "PLAYFUL...QUIRKY" pass is much narrower than
+     that on most screens, which is what caused the dead-air gap before.
+     The JS below (search "marqueeTrack") measures the bar and repeats the
+     phrase inside each copy until both are comfortably wider than it, so
+     there's always text in view no matter the viewport size. Duration is
+     also computed there, from copy width ÷ a fixed px/sec speed, so the
+     scroll speed looks the same on any screen. */
+  .marquee{
+    background:var(--ink);
+    border-top:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:16px 0;
+  }
+  .marquee-track{
+    display:inline-flex;
+    width:max-content;
+    animation-name:marquee;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+    font-family:'Alumni Sans', sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:1.9rem;
+    color:var(--contrast);
+  }
+  .marquee-copy{ flex-shrink:0; white-space:nowrap; }
+  .marquee-copy span{ color:var(--accent); margin:0 18px; }
+  @keyframes marquee{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background:var(--ink); padding:130px 32px 110px; }
+  .section-tag{
+    display:inline-block;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:6px;
+    font-weight:700;
+  }
+  .about h2.giant{
+    font-size:clamp(2.6rem, 9vw, 5.5rem);
+    color:var(--contrast);
+    margin-bottom:32px;
+    line-height:0.9;
+  }
+  .about-card{
+    background:var(--cream);
+    border:var(--border-w) solid var(--contrast);
+    border-radius:var(--radius);
+    box-shadow:8px 8px 0 var(--accent);
+    padding:32px 36px;
+    max-width:680px;
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+  }
+  .icon-square{
+    flex-shrink:0;
+    width:48px; height:48px;
+    border-radius:12px;
+    border:3px solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.4rem;
+  }
+  .about-card p{ font-size:1.08rem; color:var(--ink); }
+
+  /* ---------- WORK ---------- */
+  .work{ background:var(--purple); padding:130px 32px 120px; }
+  .work h2.giant{
+    font-size:clamp(2.6rem, 9vw, 5.5rem);
+    color:var(--ink);
+    margin-bottom:36px;
+    line-height:0.9;
+  }
+  .work-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:26px;
+  }
+  .work-card{
+    background:var(--cream);
+    border:var(--border-w) solid var(--ink);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-pop-sm);
+    padding:26px;
+    transition:transform 0.2s ease;
+  }
+  .work-card:hover{ transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink); }
+  .work-card .icon-square{ margin-bottom:14px; }
+  .work-card h3{ font-size:1.15rem; margin-bottom:10px; color:var(--ink); }
+  .work-card p{ color:var(--ink); font-size:0.96rem; opacity:0.85; }
+
+  /* ---------- PROJECTS ---------- */
+  .projects{ background:var(--ink); padding:130px 32px 130px; }
+  .projects h2.giant{
+    font-size:clamp(2.6rem, 9vw, 5.5rem);
+    color:var(--contrast);
+    margin-bottom:36px;
+    line-height:0.9;
+  }
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:24px;
+  }
+  .project-card{
+    background:var(--cream);
+    border:var(--border-w) solid var(--ink);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-pop-sm);
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s ease, translate 0.2s ease;
+  }
+  .project-card.in-view{ opacity:1; transform:translateY(0); }
+  .project-card:hover{ box-shadow:8px 8px 0 var(--ink); transform:translate(-3px,-3px); }
+  .project-card .top-row{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .project-card .badge{
+    font-size:0.66rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink);
+    background:var(--pink);
+    border:2px solid var(--ink);
+    padding:4px 10px;
+    border-radius:999px;
+  }
+  .project-card .badge.live{ background:var(--accent); }
+  .project-card h3{ font-size:1.05rem; color:var(--ink); }
+  .project-card p.desc{ color:var(--ink); opacity:0.8; font-size:0.92rem; flex-grow:1; }
+  .project-links{
+    display:flex;
+    gap:10px;
+    padding-top:8px;
+    border-top:2px dashed var(--ink);
+    flex-wrap:wrap;
+  }
+  .project-links button{
+    background:var(--contrast);
+    border:2px solid var(--ink);
+    border-radius:999px;
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.78rem;
+    cursor:pointer;
+    padding:7px 14px;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .project-links button:hover{ background:var(--ink); color:var(--contrast); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--purple);
+    border-top:var(--border-w) solid var(--ink);
+    padding:110px 32px 50px;
+    text-align:center;
+  }
+  footer h2.giant{
+    font-size:clamp(2.4rem, 8vw, 4.6rem);
+    color:var(--ink);
+    margin-bottom:14px;
+  }
+  footer p.tag{ color:var(--ink); opacity:0.75; margin-bottom:30px; font-size:1.02rem; }
+  .contact-links{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:36px;
+  }
+  .contact-links a{
+    text-decoration:none;
+    background:var(--cream);
+    border:3px solid var(--ink);
+    padding:12px 24px;
+    border-radius:999px;
+    font-size:0.92rem;
+    font-weight:700;
+    color:var(--ink);
+    transition:background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .contact-links a:hover{
+    background:var(--ink);
+    color:var(--contrast);
+    transform:translateY(-3px);
+  }
+  footer .copyright{ color:var(--ink); opacity:0.65; font-size:0.82rem; }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0;
+    background:rgba(11,11,15,0.78);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:24px;
+  }
+  .modal-overlay.active{ display:flex; }
+  .modal{
+    background:var(--cream);
+    border:var(--border-w) solid var(--ink);
+    border-radius:24px;
+    box-shadow:10px 10px 0 var(--accent);
+    max-width:600px;
+    width:100%;
+    max-height:82vh;
+    overflow-y:auto;
+    padding:36px;
+    position:relative;
+  }
+  .modal .close-btn{
+    position:absolute;
+    top:18px; right:18px;
+    width:34px; height:34px;
+    background:var(--ink);
+    color:var(--contrast);
+    border:none;
+    border-radius:8px;
+    font-size:1.2rem;
+    cursor:pointer;
+    line-height:1;
+  }
+  .modal .close-btn:hover{ background:var(--coral); }
+  .modal h3.giant{
+    font-size:1.9rem;
+    color:var(--ink);
+    margin-bottom:20px;
+    padding-right:40px;
+    line-height:1;
+  }
+  .modal p.plain{ color:var(--ink); opacity:0.8; }
+
+  /* step timeline */
+  .steps{ display:flex; flex-direction:column; gap:0; }
+  .step{ display:flex; gap:16px; position:relative; padding-bottom:26px; }
+  .step:last-child{ padding-bottom:0; }
+  .step:not(:last-child)::before{
+    content:"";
+    position:absolute;
+    left:19px; top:40px; bottom:0;
+    width:2px;
+    border-left:2px dashed var(--ink);
+    opacity:0.4;
+  }
+  .step-num{
+    flex-shrink:0;
+    width:40px; height:40px;
+    border-radius:50%;
+    border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Gasoek One', sans-serif;
+    font-size:1rem;
+    color:var(--ink);
+  }
+  .step-text{ padding-top:6px; font-weight:500; color:var(--ink); }
+  .step-text code{
+    background:var(--ink);
+    color:var(--accent);
+    padding:2px 7px;
+    border-radius:6px;
+    font-family:monospace;
+  }
+
+  /* design doc */
+  .doc-block{ margin-bottom:28px; }
+  .doc-block h4{
+    font-family:'Alumni Sans', sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:1.3rem;
+    color:var(--ink);
+    margin-bottom:14px;
+    letter-spacing:0.04em;
+  }
+  .swatch-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:14px; }
+  .swatch{
+    border:3px solid var(--ink);
+    border-radius:14px;
+    overflow:hidden;
+    background:var(--contrast);
+  }
+  .swatch-color{ height:56px; }
+  .swatch-label{ padding:8px 10px; }
+  .swatch-label .name{ font-weight:700; font-size:0.85rem; color:var(--ink); }
+  .swatch-label .hex{ font-family:monospace; font-size:0.75rem; color:var(--ink); opacity:0.7; }
+  .swatch-label .role{ font-size:0.7rem; color:var(--ink); opacity:0.6; }
+
+  .type-sample{
+    border:3px solid var(--ink);
+    border-radius:14px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    background:var(--contrast);
+  }
+  .type-sample .tname{ font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink); opacity:0.6; margin-bottom:6px; }
+  .type-sample .tspecs{ font-size:0.78rem; color:var(--ink); opacity:0.6; margin-bottom:8px; }
+  .type-sample .tsample.gasoek{ font-family:'Gasoek One', sans-serif; font-size:1.3rem; color:var(--ink); }
+  .type-sample .tsample.alumni{ font-family:'Alumni Sans', sans-serif; font-weight:800; text-transform:uppercase; font-size:2.2rem; line-height:1; color:var(--ink); }
+  .type-sample .tsample.inter{ font-family:'Inter', sans-serif; font-size:1rem; color:var(--ink); }
+
+  .layout-list{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .layout-list li{
+    padding:10px 14px;
+    background:var(--contrast);
+    border:2px solid var(--ink);
+    border-radius:10px;
+    font-size:0.9rem;
+    color:var(--ink);
+  }
+
+  .vibe-tags{ display:flex; flex-wrap:wrap; gap:10px; }
+  .vibe-tag{
+    padding:8px 16px;
+    border:3px solid var(--ink);
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.85rem;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:var(--ink);
+  }
+
+  .prompt-list{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .prompt-list li{
+    background:var(--ink);
+    color:var(--contrast);
+    padding:12px 16px;
+    border-radius:10px;
+    font-size:0.86rem;
+    font-family:monospace;
+    line-height:1.5;
+  }
+  .technique-list{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .technique-list li{
+    padding:10px 14px;
+    background:var(--contrast);
+    border:2px solid var(--ink);
+    border-radius:10px;
+    font-size:0.88rem;
+    color:var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .stamp, .marquee-track, .gs-callout, .hero-card{ animation:none; }
+  }
+
+  @media (max-width:640px){
+    nav ul{ gap:14px; font-size:0.72rem; }
+    .wrap, .hero, .about, .work, .projects, footer{ padding-left:20px; padding-right:20px; }
+    .modal{ padding:26px; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <span class="brand"><span class="dot"></span>Fayzaan Saeed</span>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#projects">AI Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="top">
+    <div class="stamp">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#0B0B0F" stroke-width="1.5" stroke-dasharray="4 5"/>
+        <path id="stampCircle" d="M50,50 m-34,0 a34,34 0 1,1 68,0 a34,34 0 1,1 -68,0" fill="none"/>
+        <text font-family="Alumni Sans, sans-serif" font-weight="800" font-size="12" letter-spacing="1.5" fill="#0B0B0F">
+          <textPath href="#stampCircle" startOffset="0%">AI BUILDER • AI BUILDER •</textPath>
+        </text>
+      </svg>
+    </div>
+    <div class="hero-inner">
+      <span class="section-tag" style="color:var(--ink)">Welcome</span>
+      <h1 class="giant">AI Builder<br>Portfolio</h1>
+      <div class="hero-card">
+        <div class="name">Fayzaan Saeed</div>
+        <hr class="divider">
+        <div class="title">AI Builder</div>
+      </div>
+    </div>
+
+    <!-- Interactive guitar strip: hover to bend, drag to pluck, sweep to strum.
+         Body bleeds off the left edge; strings stay in view. Script at end of body. -->
+    <div class="guitar-strip" id="guitarStrip" role="img"
+         aria-label="Decorative interactive guitar. Sweep or drag across the strings to play notes. Non-essential.">
+      <div class="gs-callout" aria-hidden="true">
+        <span class="gs-callout-box">Click me!</span>
+      </div>
+      <svg id="guitarSvg" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <!-- partial body, bleeding off the left -->
+        <ellipse class="gs-fill" cx="20" cy="211" rx="340" ry="310"/>
+        <!-- sound hole + rosette rings -->
+        <circle class="gs-hole" cx="185" cy="211" r="58"/>
+        <circle class="gs-ring-outer" cx="185" cy="211" r="76"/>
+        <circle class="gs-ring-inner" cx="185" cy="211" r="66"/>
+        <!-- neck (width set by JS to reach the right edge) -->
+        <rect id="gsNeck" class="gs-fill" x="340" y="100" width="460" height="212"/>
+        <g id="gsFrets"></g>
+        <!-- bridge + pins -->
+        <rect class="gs-bridge" x="34" y="94" width="22" height="234" rx="11"/>
+        <g id="gsStrings"></g>
+        <g class="gs-pins">
+          <circle cx="45" cy="116" r="4"/><circle cx="45" cy="154" r="4"/>
+          <circle cx="45" cy="192" r="4"/><circle cx="45" cy="230" r="4"/>
+          <circle cx="45" cy="268" r="4"/><circle cx="45" cy="306" r="4"/>
+        </g>
+      </svg>
+    </div>
+    <svg class="hero-illustration" viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="110" cy="248" rx="70" ry="10" fill="#0B0B0F" opacity="0.15"/>
+      <rect x="55" y="110" width="110" height="110" rx="24" fill="#38BDF8" stroke="#0B0B0F" stroke-width="4"/>
+      <rect x="75" y="70" width="70" height="60" rx="18" fill="#FFF8EC" stroke="#0B0B0F" stroke-width="4"/>
+      <circle cx="95" cy="98" r="7" fill="#0B0B0F"/>
+      <circle cx="145" cy="98" r="7" fill="#0B0B0F"/>
+      <rect x="100" y="112" width="20" height="6" rx="3" fill="#0B0B0F"/>
+      <rect x="104" y="50" width="12" height="24" fill="#0B0B0F"/>
+      <circle cx="110" cy="44" r="10" fill="#F59E0B" stroke="#0B0B0F" stroke-width="4"/>
+      <rect x="20" y="130" width="42" height="16" rx="8" fill="#EC4899" stroke="#0B0B0F" stroke-width="4" transform="rotate(-18 41 138)"/>
+      <rect x="158" y="130" width="42" height="16" rx="8" fill="#EC4899" stroke="#0B0B0F" stroke-width="4" transform="rotate(18 179 138)"/>
+      <rect x="75" y="150" width="70" height="46" rx="10" fill="#8B5CF6" stroke="#0B0B0F" stroke-width="4"/>
+      <rect x="70" y="196" width="26" height="34" rx="8" fill="#0B0B0F"/>
+      <rect x="124" y="196" width="26" height="34" rx="8" fill="#0B0B0F"/>
+    </svg>
+    <div class="section-wave">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,70 L0,70 Z" fill="#8B5CF6"/></svg>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <span class="section-tag">About</span>
+      <h2 class="giant">Hey, I'm Fayzaan.</h2>
+      <div class="about-card">
+        <span class="icon-square" style="background:var(--sky)">👋</span>
+        <p>This page is basically my sandbox for actually building things with AI, instead of just talking about it. Some days that means shipping a brand-new skill. Other days it's fixing a workflow that used to eat my whole morning. Either way, it keeps growing every time I finish something, so swing by now and then and see what's new.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="section-wave">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,70 L0,70 Z" fill="#8B5CF6"/></svg>
+    </div>
+    <div class="wrap">
+      <span class="section-tag" style="color:var(--ink)">Work</span>
+      <h2 class="giant">What I'm focused on</h2>
+      <div class="work-grid">
+        <div class="work-card">
+          <span class="icon-square" style="background:var(--pink)">🧩</span>
+          <h3>Building AI Skills &amp; Workflows</h3>
+          <p>Turning repetitive tasks into reusable skills and automations I can hand off to Claude.</p>
+        </div>
+        <div class="work-card">
+          <span class="icon-square" style="background:var(--emerald)">⚙️</span>
+          <h3>Automating the Busywork</h3>
+          <p>Scheduled tasks and scripts that quietly handle the stuff I used to do by hand.</p>
+        </div>
+        <div class="work-card">
+          <span class="icon-square" style="background:var(--coral)">📝</span>
+          <h3>Learning in Public</h3>
+          <p>Documenting what works, and what doesn't, as I go through the AI Builder program.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <div class="section-wave">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,70 L0,70 Z" fill="#0B0B0F"/></svg>
+    </div>
+    <div class="wrap">
+      <span class="section-tag">AI Projects</span>
+      <h2 class="giant">The showcase</h2>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="section-wave">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,70 L0,70 Z" fill="#8B5CF6"/></svg>
+    </div>
+    <h2 class="giant">Let's connect</h2>
+    <p class="tag">Open to chatting about AI, building, or the program.</p>
+    <div class="contact-links">
+      <a href="mailto:fayzaan.saeed2002@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/fayzaansaeed" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/FayzaanS" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="copyright">&copy; 2026 Fayzaan Saeed. Built while learning to build.</p>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="close-btn" id="modalClose" aria-label="Close">&times;</button>
+      <h3 class="giant" id="modalTitle">Title</h3>
+      <div id="modalBody"><p class="plain">Content coming soon.</p></div>
+    </div>
+  </div>
+
+<script>
+  const chipColors = ['#EC4899','#38BDF8','#34D399','#F87171','#A78BFA','#F59E0B','#8B5CF6','#EC4899'];
+  const icons = ['🎨','🖥️','🗣️','📧','⚡','📊','📈','🗂️','🧠','📚'];
+
+  function renderSteps(steps){
+    return `<div class="steps">${steps.map((s,i)=>`
+      <div class="step">
+        <span class="step-num" style="background:${chipColors[i % chipColors.length]}">${i+1}</span>
+        <div class="step-text">${s}</div>
+      </div>`).join('')}</div>`;
+  }
+
+  const designSystemDoc = `
+    <div class="doc-block">
+      <h4>Color Palette</h4>
+      <div class="swatch-grid">
+        ${[
+          {name:'Purple', hex:'#8B5CF6', role:'Primary background'},
+          {name:'Ink', hex:'#0B0B0F', role:'Text & outlines'},
+          {name:'Accent', hex:'#F59E0B', role:'Highlights & hover'},
+          {name:'Contrast', hex:'#FFFFFF', role:'Text on dark'},
+          {name:'Pink', hex:'#EC4899', role:'Micro-accent'},
+          {name:'Sky', hex:'#38BDF8', role:'Micro-accent'},
+          {name:'Emerald', hex:'#34D399', role:'Micro-accent'},
+          {name:'Coral', hex:'#F87171', role:'Micro-accent'}
+        ].map(c => `
+          <div class="swatch">
+            <div class="swatch-color" style="background:${c.hex}"></div>
+            <div class="swatch-label">
+              <div class="name">${c.name}</div>
+              <div class="hex">${c.hex}</div>
+              <div class="role">${c.role}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="doc-block">
+      <h4>Typography</h4>
+      <div class="type-sample">
+        <div class="tname">Gasoek One</div>
+        <div class="tspecs">Display / impact — short punchy headers, single weight</div>
+        <div class="tsample gasoek">Hey there</div>
+      </div>
+      <div class="type-sample">
+        <div class="tname">Alumni Sans</div>
+        <div class="tspecs">Oversized section titles — 800&ndash;900 weight, condensed, uppercase</div>
+        <div class="tsample alumni">Work</div>
+      </div>
+      <div class="type-sample">
+        <div class="tname">Inter</div>
+        <div class="tspecs">Body &amp; UI — 400&ndash;600 weight, 16px base (substitute for Neulis Sans)</div>
+        <div class="tsample inter">Clean, legible paragraph copy that lets the loud headers do the talking.</div>
+      </div>
+    </div>
+    <div class="doc-block">
+      <h4>Layout Principles</h4>
+      <ul class="layout-list">
+        <li>Full-bleed color-block sections, no page margins</li>
+        <li>Thick black outlines on cards, nav, and buttons</li>
+        <li>Wavy dividers instead of straight section breaks</li>
+        <li>Rounded cards with colored icon squares</li>
+        <li>Marquee ticker for callouts</li>
+        <li>Rotating stamp badge as a playful accent</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Vibe Words</h4>
+      <div class="vibe-tags">
+        ${['Playful','Bold','Illustrative','Vibrant','Quirky'].map((w,i)=>`<span class="vibe-tag" style="background:${chipColors[i % chipColors.length]}">${w}</span>`).join('')}
+      </div>
+    </div>
+  `;
+
+  const portfolioDoc = `
+    <div class="doc-block">
+      <h4>Techniques Used</h4>
+      <ul class="technique-list">
+        <li>Single self-contained HTML file — no build tools, no bundler</li>
+        <li>CSS custom properties as design tokens, ported straight from the design skill</li>
+        <li>Google Fonts as the only external resource</li>
+        <li>Inline SVG for illustrations and wave dividers — zero image assets</li>
+        <li>IntersectionObserver for scroll reveals instead of an animation library</li>
+        <li>A single JS data array driving the project cards and their popups</li>
+        <li>Accessible modal: closes on backdrop click, close button, or Escape</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Key Prompts</h4>
+      <ul class="prompt-list">
+        <li>"Build me a complete portfolio website as a single self-contained HTML file. Interview me about any information you don't have before building. Include Hero, About, Work, AI Projects grid, and Contact sections. Google Fonts only."</li>
+        <li>"Style my portfolio with my design skill. Read the skill file before writing any CSS, keep Google Fonts as the only external resource, and interview me about anything you don't have."</li>
+        <li>"Read my design skill file and display everything without clicking — color swatches with hex codes, typography samples, layout principles, and vibe words. Style the popup using the design system itself."</li>
+      </ul>
+    </div>
+  `;
+
+  const guitarDoc = `
+    <div class="doc-block">
+      <h4>Techniques Used</h4>
+      <ul class="technique-list">
+        <li>Plain HTML/CSS/JS — no frameworks, no libraries, zero network requests</li>
+        <li>Inline SVG strings drawn as quadratic bezier paths: straight at rest, curved while bent</li>
+        <li>Karplus&ndash;Strong synthesis — a noise burst through an averaging feedback loop sized to each string's pitch (standard tuning, E2&ndash;E4)</li>
+        <li>Damped-sine snap-back animation on requestAnimationFrame that sleeps when strings are idle</li>
+        <li>Pointer Events for mouse + touch, with <code>touch-action:none</code> to stop scroll-jank while plucking</li>
+        <li>AudioContext created on first tap/click (mobile autoplay policy); polyphony capped at 8 voices</li>
+        <li>Themed entirely by <code>--guitar-*</code> CSS variables so it blends into the hero; respects <code>prefers-reduced-motion</code></li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Key Prompts</h4>
+      <ul class="prompt-list">
+        <li>Wrote a skill spec first: "Builds a small, self-contained hero strip containing an interactive illustrated guitar rendered in SVG. Strings respond to mouse and touch by wobbling, can be dragged/plucked, and play a reasonably guitar-like tone synthesized in the browser."</li>
+        <li>"Add this to my portfolio" — handed Claude the skill file and let the spec drive the build.</li>
+        <li>"Put a little click me box and arrow above the right side of the guitar, do not push it above the black area of the guitar body."</li>
+      </ul>
+    </div>
+  `;
+
+  const goldModeDoc = `
+    <div class="doc-block">
+      <h4>Color Palette</h4>
+      <div class="swatch-grid">
+        ${[
+          {name:'Highlight', hex:'#FFD700', role:'Particles, butterfly, toggle accent'},
+          {name:'Mid', hex:'#D4AF37', role:'Classic metallic gold'},
+          {name:'Shadow', hex:'#4A3200', role:'Butterfly ink, deep bronze'},
+          {name:'Bg cast', hex:'#8A6300', role:'Warm base tone'}
+        ].map(c => `
+          <div class="swatch">
+            <div class="swatch-color" style="background:${c.hex}"></div>
+            <div class="swatch-label">
+              <div class="name">${c.name}</div>
+              <div class="hex">${c.hex}</div>
+              <div class="role">${c.role}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="doc-block">
+      <h4>Techniques Used</h4>
+      <ul class="technique-list">
+        <li>One self-contained script appended at the end of the page — never edits existing markup, classes, or copy</li>
+        <li>A fixed full-viewport pane using <code>backdrop-filter</code> for the gold duotone, so the real DOM's styles (and its <code>position:fixed</code> elements) are never touched</li>
+        <li>A shared canvas for both the ambient falling sparkles and a fairy-dust trail</li>
+        <li>A small time-based state machine (follow &rarr; wander &rarr; swarm &rarr; recombine) driven purely by how long it's been since the cursor last moved</li>
+        <li>Staggered per-butterfly arrival timing so the swarm converges and grows in, instead of snapping back instantly</li>
+        <li>Toggle state persisted in <code>localStorage</code>; everything respects <code>prefers-reduced-motion</code></li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Key Prompts</h4>
+      <ul class="prompt-list">
+        <li>"install /gold-mode. But ensure it's easy to toggle using a button always at the bottom of the page, no matter where you are, and that editing/changing the website later won't affect it."</li>
+        <li>"make the color scheme actual gold. Make the butterfly much larger. If the cursor doesn't move for 1 min, have the butterfly wander around the screen, and if there's no movement for another minute, have the butterfly explode into multiple smaller butterflies that roam the screen for 1 minute and then recombine. Make this a cycle."</li>
+        <li>"make the butterflies drop gold fairy dust when not attached to the cursor, or if the cursor hasn't moved for 30 seconds. reset timer if cursor moves"</li>
+      </ul>
+    </div>
+  `;
+
+  const projects = [
+    {
+      title: "Design System Skill",
+      desc: "A reusable Claude skill that captures a site's colors, type, and layout so every future build matches automatically.",
+      status: "live",
+      build: renderSteps([
+        "Found an inspiration website",
+        "Used Claude in Chrome to extract the design DNA",
+        "Used <code>/skill-creator</code> to turn it into a reusable skill",
+        "Now it works everywhere — type <code>/dave2-design</code> and every build matches my style"
+      ]),
+      docs: designSystemDoc
+    },
+    (() => {
+      const normal = {
+        title: "Portfolio Website",
+        desc: "This very site — a single-file HTML portfolio that grows with each AI Builder session.",
+        icon: "🖥️",
+        build: renderSteps([
+          "Started with a simple scaffolded HTML page",
+          "Applied my design system skill to style it",
+          "Claude interviewed me to fill in real content",
+          "Built out project cards as I completed each AI Builder session"
+        ]),
+        docs: portfolioDoc
+      };
+      const gold = {
+        title: "Gold Mode",
+        desc: "A toggleable amber-gold skin for this site — duotone recolor, drifting sparkles, and a cursor-chasing butterfly. Flip the switch at the bottom of the page.",
+        icon: "✨",
+        build: renderSteps([
+          "Wrote a <code>/gold-mode</code> skill spec: a fully reversible visual overlay, never touching real content",
+          "Had Claude install it as one script with a toggle fixed to the bottom of the page, so it's reachable from anywhere and immune to future site edits",
+          "Iterated on the details — vivid gold colors, a much bigger butterfly, an idle wander &rarr; swarm &rarr; recombine cycle, and a fairy-dust trail",
+          "This very card only shows up while Gold Mode is switched on — try the toggle"
+        ]),
+        docs: goldModeDoc
+      };
+      return { status: "live", variants: { normal, gold }, ...normal };
+    })(),
+    {
+      title: "Interactive Guitar Strip",
+      desc: "A playable guitar built into the hero — strings bend, pluck, and strum with sound synthesized live in the browser. Go on, click it.",
+      status: "live",
+      icon: "🎸",
+      build: renderSteps([
+        "Wrote an <code>interactive-guitar-strip</code> skill spec with hard constraints: inline SVG, Web Audio only, no libraries, no assets",
+        "Specced the feel before the code — hover bends a string, dragging plucks it, a fast sweep strums all six",
+        "Handed the skill to Claude with one line: “add this to my portfolio”",
+        "It landed under my name card, themed by my existing design tokens, with the body bleeding off the left edge",
+        "Finished with a bouncing “Click me!” callout so visitors actually discover it"
+      ]),
+      docs: guitarDoc
+    },
+    { title: "Voice Guide Skill", desc: "Details on this one are on the way." },
+    { title: "Email Manager Scheduled Task", desc: "Details on this one are on the way." },
+    { title: "Custom Workflow", desc: "Details on this one are on the way." },
+    { title: "Spreadsheet Analysis", desc: "Details on this one are on the way." },
+    { title: "Data Analysis Presentation", desc: "Details on this one are on the way." },
+    { title: "File Organization Process", desc: "Details on this one are on the way." },
+    { title: "AI Context File", desc: "Details on this one are on the way." },
+    { title: "Skills Library", desc: "Details on this one are on the way." }
+  ];
+
+  const grid = document.getElementById('projectsGrid');
+
+  projects.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    const isLive = p.status === 'live';
+    card.innerHTML = `
+      <div class="top-row">
+        <span class="icon-square" style="background:${chipColors[i % chipColors.length]}">${p.icon || icons[i % icons.length]}</span>
+        <span class="badge${isLive ? ' live' : ''}">${isLive ? 'Live' : 'Coming Soon'}</span>
+      </div>
+      <h3>${p.title}</h3>
+      <p class="desc">${p.desc}</p>
+      <div class="project-links">
+        <button type="button" data-index="${i}" data-kind="build">How I Built This</button>
+        <button type="button" data-index="${i}" data-kind="docs">Documentation</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const overlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+  const modalClose = document.getElementById('modalClose');
+
+  grid.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const index = Number(btn.getAttribute('data-index'));
+    const kind = btn.getAttribute('data-kind');
+    const project = projects[index];
+    const content = kind === 'build' ? project.build : project.docs;
+    modalTitle.textContent = (kind === 'build' ? 'How I Built This: ' : 'Documentation: ') + project.title;
+    modalBody.innerHTML = content ? content : '<p class="plain">Content coming soon.</p>';
+    overlay.classList.add('active');
+  });
+
+  function closeModal(){ overlay.classList.remove('active'); }
+  modalClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.project-card').forEach(c => observer.observe(c));
+
+  /* Swap the Portfolio Website card into a Gold Mode card whenever Gold
+     Mode is on, and back again the moment it's switched off. This just
+     watches the same html[data-theme="gold"] attribute the Gold Mode
+     script sets — the two features don't otherwise know about each other,
+     so this stays working even if Gold Mode's own script is edited later. */
+  function applyProjectVariant(index, variantKey){
+    const project = projects[index];
+    const variant = project && project.variants && project.variants[variantKey];
+    if (!variant) return;
+    project.title = variant.title;
+    project.desc = variant.desc;
+    project.icon = variant.icon;
+    project.build = variant.build;
+    project.docs = variant.docs;
+    const card = grid.children[index];
+    if (!card) return;
+    const h3 = card.querySelector('h3');
+    const descEl = card.querySelector('p.desc');
+    const iconEl = card.querySelector('.icon-square');
+    if (h3) h3.textContent = variant.title;
+    if (descEl) descEl.textContent = variant.desc;
+    if (iconEl) iconEl.textContent = variant.icon;
+  }
+
+  function syncGoldVariant(){
+    const isGold = document.documentElement.getAttribute('data-theme') === 'gold';
+    applyProjectVariant(1, isGold ? 'gold' : 'normal');
+  }
+  new MutationObserver(syncGoldVariant).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+  syncGoldVariant();
+
+  /* Marquee ticker: builds the two scrolling copies at runtime instead of
+     hardcoding them, so each copy is always at least as wide as the bar
+     itself. That's the actual requirement for the CSS's "translateX(-50%)
+     of a two-copy track" loop to be gap-free — a single "PLAYFUL...QUIRKY"
+     pass is narrower than the bar on most screens, which is what caused
+     the dead-air pause before. Speed is held constant (px/sec) by
+     computing the animation duration from the measured copy width, so it
+     scrolls at the same visual pace on any viewport. Re-measures on resize. */
+  (function(){
+    const track = document.getElementById('marqueeTrack');
+    if (!track) return;
+
+    const WORDS = ['PLAYFUL', 'BOLD', 'ILLUSTRATIVE', 'VIBRANT', 'QUIRKY'];
+    const PIXELS_PER_SECOND = 70;
+    const phraseHTML = WORDS.map(w => `${w} <span>•</span> `).join('');
+
+    function buildCopy(hidden){
+      const span = document.createElement('span');
+      span.className = 'marquee-copy';
+      if (hidden) span.setAttribute('aria-hidden', 'true');
+      return span;
+    }
+
+    function rebuild(){
+      const barWidth = track.parentElement.clientWidth || window.innerWidth;
+      const targetWidth = barWidth * 1.25 + 200; /* comfortable safety margin */
+
+      const copyA = buildCopy(false);
+      track.innerHTML = '';
+      track.appendChild(copyA);
+      copyA.innerHTML = phraseHTML;
+      while (copyA.scrollWidth < targetWidth){
+        copyA.innerHTML += phraseHTML;
+      }
+
+      const copyB = buildCopy(true);
+      copyB.innerHTML = copyA.innerHTML;
+      track.appendChild(copyB);
+
+      const travel = copyA.getBoundingClientRect().width; /* == the -50% distance */
+      track.style.animationDuration = Math.max(6, travel / PIXELS_PER_SECOND) + 's';
+    }
+
+    rebuild();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rebuild, 200);
+    });
+  })();
+</script>
+
+<script>
+/* ── Interactive Guitar Strip ────────────────────────────────────────────
+   Colors:  edit the --guitar-* CSS variables on .guitar-strip.
+   Height:  change `height` on .guitar-strip in the CSS.
+   Bleed:   body bleeds off the LEFT. To flip to the right, add
+            `.guitar-strip svg{ transform:scaleX(-1); }` in CSS and mirror
+            the pointer x inside pos() below: `x = W - x;`.
+   Audio:   Karplus–Strong plucked-string synthesis (Web Audio only, no
+            assets). AudioContext is created on the first press/tap, so
+            everything animates silently until then (autoplay policy). */
+(function(){
+  const NS = 'http://www.w3.org/2000/svg';
+  const strip = document.getElementById('guitarStrip');
+  const svg = document.getElementById('guitarSvg');
+  const H = 400, X0 = 46; // strip viewBox height, string anchor x (bridge)
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+
+  // Standard tuning; thin/high E4 on top down to thick/low E2 at the bottom
+  const NOTES = [
+    {f:329.63, w:2.0}, {f:246.94, w:2.6}, {f:196.00, w:3.2},
+    {f:146.83, w:3.9}, {f:110.00, w:4.7}, {f:82.41,  w:5.6}
+  ];
+  const TOP = 116, GAP = 38;
+
+  const stringsG = document.getElementById('gsStrings');
+  const strings = NOTES.map((n,i) => {
+    const el = document.createElementNS(NS,'path');
+    el.setAttribute('class','gs-string');
+    el.style.strokeWidth = n.w;
+    stringsG.appendChild(el);
+    return { y:TOP + i*GAP, freq:n.f, el, mode:'idle',
+             disp:0, target:0, amp:0, t0:0, apexX:400, lastPluck:0 };
+  });
+
+  /* ---- geometry: keep viewBox 1:1 with CSS pixels so hits are exact ---- */
+  let W = 800;
+  const neck = document.getElementById('gsNeck');
+  const fretsG = document.getElementById('gsFrets');
+  function buildFrets(){
+    while (fretsG.firstChild) fretsG.removeChild(fretsG.firstChild);
+    let x = 452, gap = 58, i = 0;
+    while (x < W - 14){
+      const l = document.createElementNS(NS,'line');
+      l.setAttribute('x1',x); l.setAttribute('x2',x);
+      l.setAttribute('y1',108); l.setAttribute('y2',304);
+      l.setAttribute('class','gs-fret');
+      fretsG.appendChild(l);
+      if (i === 1 || i === 3){ // fret marker dots
+        const c = document.createElementNS(NS,'circle');
+        c.setAttribute('cx', x + gap*0.55); c.setAttribute('cy', 211);
+        c.setAttribute('r', 7); c.setAttribute('class','gs-dot');
+        fretsG.appendChild(c);
+      }
+      x += gap; gap *= 1.14; i++;
+    }
+  }
+  function draw(s){
+    // quadratic curve whose midpoint displacement equals s.disp
+    s.el.setAttribute('d', Math.abs(s.disp) < 0.05
+      ? `M ${X0} ${s.y} L ${W} ${s.y}`
+      : `M ${X0} ${s.y} Q ${s.apexX} ${s.y + 2*s.disp} ${W} ${s.y}`);
+  }
+  function resize(){
+    W = Math.max(320, strip.clientWidth);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    neck.setAttribute('width', Math.max(0, W - 340));
+    buildFrets();
+    strings.forEach(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  /* ---- animation: strings are perfectly still until touched ---- */
+  let raf = null;
+  function tick(){
+    const now = performance.now();
+    let live = false;
+    for (const s of strings){
+      if (s.mode === 'grab'){ live = true; }
+      else if (s.mode === 'wobble'){
+        // damped snap-back oscillation (decaying sine)
+        const t = (now - s.t0) / 1000;
+        s.disp = s.amp * Math.cos(25*t) * Math.exp(-4.5*t);
+        if (t > 0.25 && Math.abs(s.disp) < 0.2){
+          s.disp = 0; s.mode = 'idle'; s.el.classList.remove('gs-active');
+        } else live = true;
+        draw(s);
+      }
+      else if (s.mode === 'bend'){
+        s.disp += (s.target - s.disp) * 0.3;
+        if (s.target === 0 && Math.abs(s.disp) < 0.1){ s.disp = 0; s.mode = 'idle'; }
+        else live = true;
+        draw(s);
+      }
+    }
+    raf = live ? requestAnimationFrame(tick) : null;
+  }
+  const wake = () => { if (!raf) raf = requestAnimationFrame(tick); };
+
+  /* ---- Karplus–Strong audio engine ---- */
+  let actx = null, master = null;
+  const voices = []; // cap polyphony
+  function ensureAudio(){
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    if (!actx){
+      actx = new AC();
+      master = actx.createGain();
+      master.gain.value = 0.5;
+      master.connect(actx.destination);
+    }
+    if (actx.state === 'suspended') actx.resume();
+  }
+  function playNote(freq, vel){
+    if (!actx || actx.state !== 'running') return;
+    vel = clamp(vel, 0.15, 1);
+    const sr = actx.sampleRate;
+    const N = Math.round(sr / freq);           // delay-line length = pitch
+    const len = Math.floor(sr * 1.8);
+    const buf = actx.createBuffer(1, len, sr);
+    const d = buf.getChannelData(0);
+    // noise burst; harder plucks are brighter (less pre-filtering)
+    const bright = 0.35 + 0.6 * vel;
+    let prev = 0;
+    for (let i = 0; i < N; i++){
+      prev = bright * (Math.random()*2 - 1) + (1 - bright) * prev;
+      d[i] = prev;
+    }
+    // averaging low-pass feedback loop (0.498*2 = 0.996 decay)
+    d[N] = 0.498 * (d[0] + d[N-1]);
+    for (let i = N + 1; i < len; i++) d[i] = 0.498 * (d[i-N] + d[i-N-1]);
+    if (voices.length >= 8){ try { voices.shift().stop(); } catch(e){} }
+    const src = actx.createBufferSource();
+    src.buffer = buf;
+    const g = actx.createGain();
+    g.gain.value = 0.2 + 0.8 * vel;            // velocity → loudness
+    src.connect(g).connect(master);
+    src.onended = () => { const i = voices.indexOf(src); if (i > -1) voices.splice(i,1); };
+    src.start();
+    voices.push(src);
+  }
+  function pluckNote(s, vel){
+    const now = performance.now();
+    if (now - s.lastPluck < 70) return;        // strum debounce per string
+    s.lastPluck = now;
+    playNote(s.freq, vel);
+  }
+
+  /* ---- pointer + touch interaction (Pointer Events cover both) ---- */
+  let px = null, py = null, grabbed = null;
+  const pos = e => {
+    const r = svg.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  };
+  const apexClamp = x => clamp(x, X0 + 40, Math.max(X0 + 50, W - 20));
+
+  svg.addEventListener('pointerdown', e => {
+    ensureAudio(); // first user gesture unlocks sound
+    const {x, y} = pos(e);
+    let best = null, bd = 24;
+    for (const s of strings){
+      const dist = Math.abs(y - s.y);
+      if (dist < bd){ bd = dist; best = s; }
+    }
+    if (best && x > X0){
+      grabbed = best;
+      grabbed.mode = 'grab';
+      grabbed.el.classList.add('gs-active');
+      grabbed.apexX = apexClamp(x);
+      grabbed.disp = clamp(y - grabbed.y, -75, 75);
+      draw(grabbed);
+      try { svg.setPointerCapture(e.pointerId); } catch(err){}
+      wake();
+    }
+    px = x; py = y;
+    e.preventDefault();
+  });
+
+  svg.addEventListener('pointermove', e => {
+    const {x, y} = pos(e);
+    if (grabbed){
+      // stretch: apex follows the pointer
+      grabbed.disp = clamp(y - grabbed.y, -75, 75);
+      grabbed.apexX = apexClamp(x);
+      draw(grabbed);
+    } else {
+      // crossing a string plays it; fast sweeps become a strum
+      if (py !== null && x > X0){
+        for (const s of strings){
+          if ((py - s.y) * (y - s.y) < 0){
+            const vel = clamp(Math.abs(y - py) / 40, 0.2, 1);
+            s.apexX = apexClamp(x);
+            if (!reduceMotion){
+              s.mode = 'wobble'; s.t0 = performance.now();
+              s.amp = (y > py ? 1 : -1) * (5 + 12 * vel);
+              wake();
+            }
+            pluckNote(s, vel);
+          }
+        }
+      }
+      // gentle bend toward a nearby pointer
+      if (!reduceMotion){
+        for (const s of strings){
+          if (s.mode === 'wobble' || s.mode === 'grab') continue;
+          const dy = y - s.y;
+          if (Math.abs(dy) < 26 && x > X0){
+            s.mode = 'bend';
+            s.target = dy * (1 - Math.abs(dy)/26) * 0.4;
+            s.apexX = apexClamp(x);
+            wake();
+          } else if (s.mode === 'bend'){ s.target = 0; wake(); }
+        }
+      }
+    }
+    px = x; py = y;
+  });
+
+  function release(){
+    if (grabbed){
+      const s = grabbed; grabbed = null;
+      const vel = clamp(Math.abs(s.disp) / 75, 0.2, 1);
+      s.el.classList.remove('gs-active');
+      if (!reduceMotion){
+        s.mode = 'wobble'; s.t0 = performance.now(); s.amp = s.disp;
+        wake();
+      } else { s.mode = 'idle'; s.disp = 0; draw(s); }
+      pluckNote(s, vel);
+    }
+  }
+  svg.addEventListener('pointerup', release);
+  svg.addEventListener('pointercancel', release);
+  svg.addEventListener('pointerleave', () => {
+    if (!grabbed){
+      for (const s of strings){ if (s.mode === 'bend') s.target = 0; }
+      px = py = null;
+      wake();
+    }
+  });
+})();
+</script>
+
+<!-- ── Gold Mode ─────────────────────────────────────────────────────────
+     Self-contained, additive, fully reversible. This single script:
+       1. injects its own <style> tag (nothing here touches existing CSS)
+       2. appends its own overlay elements to <body> as the LAST nodes
+          (tint layer, particle canvas, cursor-following butterfly, toggle)
+       3. never reads or depends on any of the site's own class names,
+          section ids, or content — it only ever looks at <html> and <body>
+     Because it doesn't reference anything about the page's content, future
+     edits to the site (new sections, reworded copy, reordered cards, etc.)
+     can't break it — there's nothing here for those edits to collide with.
+     Toggle state persists via localStorage and restores on reload.
+
+     Butterfly idle cycle (any mouse/touch movement snaps straight back to
+     following the cursor, mid-flight if need be):
+       0s–60s idle    → follows the cursor (stationary if the cursor is)
+       60s–120s idle  → wanders the screen solo
+       120s–180s idle → explodes into 5 mini butterflies that roam independently
+       at 180s        → each mini flies toward the cursor and merges in on its
+                         own staggered timing over ~4s, growing the reforming
+                         butterfly bigger with every arrival, until it's back
+                         to one full-size butterfly — then it needs another
+                         full idle minute before it can explode again
+                         (repeats roughly every 2 minutes while left idle)
+
+     Fairy dust: any butterfly currently not glued to the live cursor
+     (wandering, swarming, or mid-recombine) trails small fading gold dust
+     particles. Even a butterfly nominally "following" the cursor starts
+     dropping dust once the cursor's gone 30s without moving — any
+     movement resets that timer immediately.
+     Drop this whole block into any page to reuse it. -->
+<script>
+(function(){
+  var STORAGE_KEY = 'gold-mode-enabled';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var BUTTERFLY_SIZE = 176;   /* ~4x the original 44px */
+  var MINI_SIZE = 64;
+  var SWARM_COUNT = 5;
+  var IDLE_WANDER_DELAY = 60000;  /* ms of no cursor movement before solo wander starts */
+  var WANDER_DURATION = 60000;    /* solo wander length before it explodes */
+  var SWARM_DURATION = 60000;     /* how long the swarm roams before recombining */
+
+  /* 1. inject styles ----------------------------------------------------- */
+  var style = document.createElement('style');
+  style.id = 'gold-mode-styles';
+  style.textContent = `
+    :root{
+      /* Vivid metallic gold, not sepia/brown */
+      --gold-highlight:#FFD700;
+      --gold-mid:#D4AF37;
+      --gold-shadow:#4A3200;
+      --gold-bg:#8A6300;
+    }
+    #gold-mode-tint{
+      position:fixed; inset:0;
+      z-index:999990;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity .5s ease;
+      backdrop-filter: grayscale(1) sepia(1) saturate(6) hue-rotate(15deg) brightness(1.05) contrast(1.1);
+      -webkit-backdrop-filter: grayscale(1) sepia(1) saturate(6) hue-rotate(15deg) brightness(1.05) contrast(1.1);
+    }
+    html[data-theme="gold"] #gold-mode-tint{ opacity:1; }
+
+    #gold-mode-particles{
+      position:fixed; inset:0;
+      z-index:999991;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity .5s ease;
+    }
+    html[data-theme="gold"] #gold-mode-particles{ opacity:1; }
+
+    #gold-mode-butterfly, .gm-mini-butterfly{
+      position:fixed;
+      top:0; left:0;
+      z-index:999992;
+      pointer-events:none;
+      will-change:transform;
+    }
+    #gold-mode-butterfly{
+      width:${BUTTERFLY_SIZE}px; height:${BUTTERFLY_SIZE}px;
+      opacity:0;
+      transition:opacity .5s ease;
+    }
+    #gold-mode-butterfly.gm-active{ opacity:1; }
+    .gm-mini-butterfly{ width:${MINI_SIZE}px; height:${MINI_SIZE}px; }
+    .gm-wing{ transform-box:fill-box; transform-origin:center; animation:gm-wing-flap 0.32s ease-in-out infinite; }
+
+    @keyframes gm-wing-flap{
+      0%,100%{ transform:scaleX(1); }
+      50%{ transform:scaleX(0.35); }
+    }
+
+    #gold-mode-toggle{
+      position:fixed;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:999999;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:#0B0B0F;
+      color:#fff;
+      border:3px solid var(--gold-highlight);
+      border-radius:999px;
+      padding:8px 18px 8px 8px;
+      font-family:'Inter', system-ui, sans-serif;
+      font-weight:700;
+      font-size:0.78rem;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      cursor:pointer;
+      box-shadow:0 6px 20px rgba(0,0,0,0.35);
+      transition:box-shadow .2s ease;
+    }
+    #gold-mode-toggle:hover{ box-shadow:0 6px 26px rgba(255,215,0,0.5); }
+    .gm-toggle-track{
+      position:relative;
+      width:38px; height:22px;
+      background:#333;
+      border-radius:999px;
+      transition:background .25s ease;
+      flex-shrink:0;
+    }
+    html[data-theme="gold"] .gm-toggle-track{ background:var(--gold-highlight); }
+    .gm-toggle-thumb{
+      position:absolute;
+      top:2px; left:2px;
+      width:18px; height:18px;
+      background:#fff;
+      border-radius:50%;
+      transition:transform .25s ease;
+    }
+    html[data-theme="gold"] .gm-toggle-thumb{ transform:translateX(16px); }
+
+    @media (prefers-reduced-motion: reduce){
+      #gold-mode-butterfly, .gm-mini-butterfly{ display:none; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  /* 2. inject overlay elements (appended last, so they paint on top) ----- */
+  var tint = document.createElement('div');
+  tint.id = 'gold-mode-tint';
+  tint.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(tint);
+
+  var canvas = document.createElement('canvas');
+  canvas.id = 'gold-mode-particles';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(canvas);
+  var ctx = canvas.getContext('2d');
+
+  var BUTTERFLY_MARKUP =
+    '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
+      '<path class="gm-wing" d="M50,50 C30,20 5,25 10,45 C14,62 35,58 50,50 Z" fill="#FFD700" stroke="#4A3200" stroke-width="3"/>' +
+      '<path class="gm-wing" d="M50,50 C70,20 95,25 90,45 C86,62 65,58 50,50 Z" fill="#FFD700" stroke="#4A3200" stroke-width="3"/>' +
+      '<ellipse cx="50" cy="50" rx="3" ry="14" fill="#4A3200"/>' +
+      '<path d="M50,38 Q46,28 42,26" fill="none" stroke="#4A3200" stroke-width="2" stroke-linecap="round"/>' +
+      '<path d="M50,38 Q54,28 58,26" fill="none" stroke="#4A3200" stroke-width="2" stroke-linecap="round"/>' +
+    '</svg>';
+
+  var butterfly = document.createElement('div');
+  butterfly.id = 'gold-mode-butterfly';
+  butterfly.setAttribute('aria-hidden', 'true');
+  butterfly.innerHTML = BUTTERFLY_MARKUP;
+  document.body.appendChild(butterfly);
+
+  var toggle = document.createElement('button');
+  toggle.id = 'gold-mode-toggle';
+  toggle.type = 'button';
+  toggle.setAttribute('aria-pressed', 'false');
+  toggle.setAttribute('aria-label', 'Toggle Gold Mode');
+  toggle.innerHTML = '<span class="gm-toggle-track"><span class="gm-toggle-thumb"></span></span><span>Gold</span>';
+  document.body.appendChild(toggle);
+
+  /* 3. ambient gold particles --------------------------------------------- */
+  var particles = [];
+  function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function spawnParticles(){
+    particles = [];
+    var count = 40;
+    for (var i = 0; i < count; i++){
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: 1 + Math.random() * 2.2,
+        speed: 0.3 + Math.random() * 0.6,
+        drift: (Math.random() - 0.5) * 0.5,
+        phase: Math.random() * Math.PI * 2,
+        opacity: 0.3 + Math.random() * 0.6
+      });
+    }
+  }
+
+  /* Fairy dust — a short-lived trail spawned at a butterfly's position
+     whenever it's not actively glued to the cursor (see maybeSpawnDust in
+     section 4, which decides *when*; this just renders *what* was spawned). */
+  var dust = [];
+  var DUST_MAX = 160;
+  function spawnDustAt(x, y){
+    if (dust.length > DUST_MAX) dust.splice(0, dust.length - DUST_MAX);
+    dust.push({
+      x: x + (Math.random() - 0.5) * 10,
+      y: y + (Math.random() - 0.5) * 10,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: 0.3 + Math.random() * 0.5,
+      r: 1.2 + Math.random() * 1.8,
+      life: 0,
+      maxLife: 650 + Math.random() * 450,
+      opacity: 0.55 + Math.random() * 0.4
+    });
+  }
+
+  var particleRaf = null;
+  var lastParticleFrameTs = null;
+  function drawParticles(ts){
+    var dt = (lastParticleFrameTs == null) ? 16 : Math.min(50, ts - lastParticleFrameTs);
+    lastParticleFrameTs = ts;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < particles.length; i++){
+      var p = particles[i];
+      p.y += p.speed;
+      p.x += Math.sin(p.phase + p.y * 0.01) * p.drift;
+      if (p.y > canvas.height + 10){ p.y = -10; p.x = Math.random() * canvas.width; }
+      if (p.x < -10) p.x = canvas.width + 10;
+      if (p.x > canvas.width + 10) p.x = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,215,0,' + p.opacity + ')';
+      ctx.fill();
+    }
+    for (var j = dust.length - 1; j >= 0; j--){
+      var d = dust[j];
+      d.life += dt;
+      if (d.life >= d.maxLife){ dust.splice(j, 1); continue; }
+      d.x += d.vx; d.y += d.vy; d.vy += 0.01;
+      var t = d.life / d.maxLife;
+      var alpha = (1 - t) * d.opacity;
+      var radius = Math.max(0.3, d.r * (1 - t * 0.5));
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,215,0,' + alpha + ')';
+      ctx.fill();
+    }
+    particleRaf = requestAnimationFrame(drawParticles);
+  }
+  function startParticles(){
+    if (reduced || particleRaf) return; /* motion disabled under reduced-motion */
+    spawnParticles();
+    lastParticleFrameTs = null;
+    particleRaf = requestAnimationFrame(drawParticles);
+  }
+  function stopParticles(){
+    if (particleRaf){ cancelAnimationFrame(particleRaf); particleRaf = null; }
+    dust = [];
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  /* 4. cursor-following butterfly + idle wander/swarm/recombine cycle ----- */
+  var RECOMBINE_DURATION = 4000; /* 4s converge-and-grow, within the 3-5s target */
+  var DUST_IDLE_THRESHOLD = 30000; /* drop fairy dust once the cursor's been still this long */
+  var DUST_SPAWN_INTERVAL = 90;    /* ms between dust spawn ticks, per qualifying butterfly */
+  var lastDustSpawnAt = 0;
+
+  var bx = window.innerWidth / 2, by = window.innerHeight / 2;
+  var tx = bx, ty = by;
+  var wanderT = 0;
+  var butterflyRaf = null;
+  var lastMoveTime = performance.now();
+  var currentMode = 'follow'; /* 'follow' | 'wander' | 'swarm' | 'recombine' */
+  var swarm = [];
+  var recombineStartAt = 0;
+  var mergedCount = 0;
+
+  function onPointerMove(e){
+    lastMoveTime = performance.now();
+    var pt = (e.touches && e.touches[0]) ? e.touches[0] : e;
+    tx = pt.clientX; ty = pt.clientY;
+  }
+  window.addEventListener('mousemove', onPointerMove, { passive: true });
+  window.addEventListener('touchmove', onPointerMove, { passive: true });
+
+  function spawnSwarm(){
+    var originX = bx, originY = by;
+    for (var i = 0; i < SWARM_COUNT; i++){
+      var el = document.createElement('div');
+      el.className = 'gm-mini-butterfly';
+      el.setAttribute('aria-hidden', 'true');
+      el.innerHTML = BUTTERFLY_MARKUP;
+      document.body.appendChild(el);
+      swarm.push({
+        el: el,
+        x: originX, y: originY,
+        angle: Math.random() * Math.PI * 2,
+        speed: 1.1 + Math.random() * 1.3
+      });
+    }
+  }
+  function updateSwarm(){
+    for (var i = 0; i < swarm.length; i++){
+      var m = swarm[i];
+      m.angle += (Math.random() - 0.5) * 0.3;
+      m.x += Math.cos(m.angle) * m.speed;
+      m.y += Math.sin(m.angle) * m.speed;
+      if (m.x < 0 || m.x > window.innerWidth) m.angle = Math.PI - m.angle;
+      if (m.y < 0 || m.y > window.innerHeight) m.angle = -m.angle;
+      m.x = Math.max(0, Math.min(window.innerWidth, m.x));
+      m.y = Math.max(0, Math.min(window.innerHeight, m.y));
+      var deg = m.angle * (180 / Math.PI);
+      m.el.style.transform = 'translate(' + (m.x - MINI_SIZE / 2) + 'px,' + (m.y - MINI_SIZE / 2) + 'px) rotate(' + (deg * 0.2) + 'deg)';
+    }
+  }
+  /* Hard, instant teardown — used only when gold mode is switched off or
+     interrupted before a proper recombine can run (see stopButterfly). */
+  function despawnSwarm(){
+    if (!swarm.length) return;
+    var avgX = 0, avgY = 0;
+    for (var i = 0; i < swarm.length; i++){ avgX += swarm[i].x; avgY += swarm[i].y; swarm[i].el.remove(); }
+    bx = avgX / swarm.length; by = avgY / swarm.length;
+    tx = bx; ty = by;
+    swarm = [];
+  }
+
+  function easeInOut(t){ return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+  /* Recombination: each of the SWARM_COUNT minis flies toward the cursor
+     (tx, ty — tracked live, so it keeps up if you move the mouse mid-flight),
+     arriving at its own staggered moment across RECOMBINE_DURATION. A
+     central butterfly starts at MINI_SIZE and grows toward BUTTERFLY_SIZE
+     with every arrival, so it visibly gets bigger as each one rejoins. */
+  function beginRecombine(now){
+    currentMode = 'recombine';
+    recombineStartAt = now;
+    mergedCount = 0;
+    for (var i = 0; i < swarm.length; i++){
+      var m = swarm[i];
+      m.startX = m.x; m.startY = m.y;
+      m.arrivalAt = now + ((i + 1) / swarm.length) * RECOMBINE_DURATION + (Math.random() - 0.5) * 300;
+      m.merged = false;
+    }
+    var avgX = 0, avgY = 0;
+    for (var j = 0; j < swarm.length; j++){ avgX += swarm[j].x; avgY += swarm[j].y; }
+    if (swarm.length){ bx = avgX / swarm.length; by = avgY / swarm.length; }
+    butterfly.style.transition = 'width .35s ease, height .35s ease';
+    butterfly.style.width = MINI_SIZE + 'px';
+    butterfly.style.height = MINI_SIZE + 'px';
+    butterfly.style.display = '';
+  }
+
+  function finishRecombine(){
+    for (var i = 0; i < swarm.length; i++){ if (!swarm[i].merged) swarm[i].el.remove(); }
+    swarm = [];
+    butterfly.style.width = '';
+    butterfly.style.height = '';
+    butterfly.style.transition = '';
+    bx = tx; by = ty;
+    currentMode = 'wander'; /* needs another full idle minute before it can explode again */
+  }
+
+  function updateRecombine(now){
+    var allMerged = true;
+    for (var i = 0; i < swarm.length; i++){
+      var m = swarm[i];
+      if (m.merged) continue;
+      var span = Math.max(1, m.arrivalAt - recombineStartAt);
+      var progress = Math.min(1, (now - recombineStartAt) / span);
+      var eased = easeInOut(progress);
+      m.x = m.startX + (tx - m.startX) * eased;
+      m.y = m.startY + (ty - m.startY) * eased;
+      var deg = Math.atan2(ty - m.startY, tx - m.startX) * (180 / Math.PI);
+      m.el.style.transform = 'translate(' + (m.x - MINI_SIZE / 2) + 'px,' + (m.y - MINI_SIZE / 2) + 'px) rotate(' + (deg * 0.2) + 'deg)';
+      if (now >= m.arrivalAt){
+        m.merged = true;
+        m.el.remove();
+        mergedCount++;
+        var grown = MINI_SIZE + (BUTTERFLY_SIZE - MINI_SIZE) * (mergedCount / swarm.length);
+        butterfly.style.width = grown + 'px';
+        butterfly.style.height = grown + 'px';
+      } else {
+        allMerged = false;
+      }
+    }
+    bx += (tx - bx) * 0.05; by += (ty - by) * 0.05;
+    var curSize = parseFloat(butterfly.style.width) || BUTTERFLY_SIZE;
+    var angle = Math.atan2(ty - by, tx - bx) * (180 / Math.PI);
+    butterfly.style.transform = 'translate(' + (bx - curSize / 2) + 'px,' + (by - curSize / 2) + 'px) rotate(' + (angle * 0.15) + 'deg)';
+
+    /* small safety timeout in case a stagger/jitter pushes an arrival late */
+    if (allMerged || now - recombineStartAt > RECOMBINE_DURATION + 800) finishRecombine();
+  }
+
+  /* Figures out which of the three time-driven modes we should be in right
+     now, purely from how long it's been since the last cursor/touch
+     movement. Any movement resets lastMoveTime, which drops idle back to 0
+     and snaps this straight back to 'follow' on the very next frame.
+     'recombine' is not time-driven — it's a self-terminating detour entered
+     whenever we're about to leave 'swarm', handled separately below. */
+  function desiredMode(idle){
+    if (idle < IDLE_WANDER_DELAY) return 'follow';
+    var cycle = WANDER_DURATION + SWARM_DURATION;
+    var pos = (idle - IDLE_WANDER_DELAY) % cycle;
+    return (pos < WANDER_DURATION) ? 'wander' : 'swarm';
+  }
+
+  /* Fairy dust drops whenever a butterfly isn't actively glued to the
+     cursor — i.e. it's wandering, swarming, or mid-recombine — OR the
+     cursor simply hasn't moved in DUST_IDLE_THRESHOLD (30s), even if we're
+     technically still in 'follow'. Any cursor/touch movement resets
+     lastMoveTime (see onPointerMove above), which clears that second
+     condition immediately. */
+  function maybeSpawnDust(now){
+    var idleMs = now - lastMoveTime;
+    var notAttached = (currentMode !== 'follow') || (idleMs >= DUST_IDLE_THRESHOLD);
+    if (!notAttached) return;
+    if (now - lastDustSpawnAt < DUST_SPAWN_INTERVAL) return;
+    lastDustSpawnAt = now;
+    for (var i = 0; i < swarm.length; i++){
+      if (!swarm[i].merged) spawnDustAt(swarm[i].x, swarm[i].y);
+    }
+    if (currentMode !== 'swarm') spawnDustAt(bx, by); /* main butterfly is hidden during pure swarm roam */
+  }
+
+  function animateButterfly(){
+    var now = performance.now();
+
+    if (currentMode === 'recombine'){
+      updateRecombine(now);
+    } else {
+      var mode = desiredMode(now - lastMoveTime);
+      if (mode !== currentMode){
+        if (currentMode === 'swarm' && mode !== 'swarm'){
+          beginRecombine(now); /* converge-and-grow instead of an instant swap */
+        } else {
+          if (mode === 'swarm') spawnSwarm();
+          butterfly.style.display = (mode === 'swarm') ? 'none' : '';
+          currentMode = mode;
+        }
+      }
+
+      if (currentMode === 'swarm'){
+        updateSwarm();
+      } else if (currentMode === 'wander' || currentMode === 'follow'){
+        if (currentMode === 'wander'){
+          wanderT += 0.01;
+          tx = window.innerWidth / 2 + Math.cos(wanderT) * window.innerWidth * 0.28;
+          ty = window.innerHeight / 2 + Math.sin(wanderT * 1.3) * window.innerHeight * 0.22;
+        }
+        var dx = tx - bx, dy = ty - by;
+        bx += dx * 0.06; by += dy * 0.06;
+        var angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        butterfly.style.transform = 'translate(' + (bx - BUTTERFLY_SIZE / 2) + 'px,' + (by - BUTTERFLY_SIZE / 2) + 'px) rotate(' + (angle * 0.15) + 'deg)';
+      }
+    }
+    maybeSpawnDust(now);
+    butterflyRaf = requestAnimationFrame(animateButterfly);
+  }
+  function startButterfly(){
+    butterfly.classList.add('gm-active');
+    if (reduced || butterflyRaf) return; /* reduced to hidden/idle under reduced-motion (see CSS) */
+    lastMoveTime = performance.now();
+    currentMode = 'follow';
+    animateButterfly();
+  }
+  function stopButterfly(){
+    butterfly.classList.remove('gm-active');
+    if (butterflyRaf){ cancelAnimationFrame(butterflyRaf); butterflyRaf = null; }
+    despawnSwarm();
+    butterfly.style.display = '';
+    butterfly.style.width = '';
+    butterfly.style.height = '';
+    butterfly.style.transition = '';
+    currentMode = 'follow';
+  }
+
+  /* 5. toggle + persistence ------------------------------------------------ */
+  function applyState(on){
+    if (on) document.documentElement.setAttribute('data-theme', 'gold');
+    else document.documentElement.removeAttribute('data-theme');
+    toggle.setAttribute('aria-pressed', String(on));
+    if (on){ startParticles(); startButterfly(); }
+    else { stopParticles(); stopButterfly(); }
+  }
+
+  toggle.addEventListener('click', function(){
+    var next = document.documentElement.getAttribute('data-theme') !== 'gold';
+    localStorage.setItem(STORAGE_KEY, next ? '1' : '0');
+    applyState(next);
+  });
+
+  document.addEventListener('visibilitychange', function(){
+    var on = document.documentElement.getAttribute('data-theme') === 'gold';
+    if (document.hidden){
+      stopParticles();
+      if (butterflyRaf){ cancelAnimationFrame(butterflyRaf); butterflyRaf = null; }
+    } else if (on){
+      startParticles();
+      if (!reduced && !butterflyRaf){ lastMoveTime = performance.now(); animateButterfly(); }
+    }
+  });
+
+  /* init from storage ------------------------------------------------------ */
+  applyState(localStorage.getItem(STORAGE_KEY) === '1');
+})();
+</script>
+
+</body>
+</html>
