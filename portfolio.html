@@ -129,7 +129,7 @@
     position:absolute;
     top:-40px;
     right:24px;
-    width:120px; height:120px;
+    width:180px; height:180px;
     border-radius:50%;
     background:var(--accent);
     border:var(--border-w) solid var(--ink);
@@ -138,11 +138,55 @@
     justify-content:center;
     animation:spin 16s linear infinite;
     z-index:4;
+    cursor:pointer;
   }
-  .stamp svg{ width:104px; height:104px; }
+  .stamp svg{ width:158px; height:158px; }
+  .stamp text{
+    fill:var(--ink);
+  }
+  .stamp-reveal{
+    position:absolute;
+    top:170px;
+    right:12px;
+    width:260px;
+    z-index:5;
+    text-align:center;
+    pointer-events:none;
+    color:var(--ink);
+    font-family:'Alumni Sans', sans-serif;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    line-height:0.95;
+    opacity:0;
+    transform:translateY(-6px) scale(0.96);
+  }
+  .stamp-reveal .latin{
+    font-size:1.35rem;
+    font-weight:900;
+  }
+  .stamp-reveal .english{
+    margin-top:6px;
+    font-family:'Inter', sans-serif;
+    font-size:0.72rem;
+    font-weight:900;
+    letter-spacing:0.08em;
+  }
+  .stamp-reveal.is-visible{
+    animation:stampRevealHold 10s ease forwards;
+  }
+  @keyframes stampRevealHold{
+    0%{ opacity:0; transform:translateY(-8px) scale(0.96); filter:brightness(1); }
+    8%,78%{ opacity:1; transform:translateY(0) scale(1); filter:brightness(1); }
+    84%{ opacity:1; filter:brightness(1.5); text-shadow:0 0 10px rgba(255,215,0,0.75); }
+    92%{ opacity:0.62; filter:brightness(1.2); text-shadow:0 0 16px rgba(255,215,0,0.5); }
+    100%{ opacity:0; transform:translateY(-5px) scale(0.98); filter:brightness(1.8); text-shadow:0 0 22px rgba(255,215,0,0); }
+  }
   @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
 
   .hero-title-lockup{
+    position:relative;
+    z-index:2;
     min-height:260px;
     display:flex;
     flex-direction:column;
@@ -173,6 +217,86 @@
     padding:8px 18px;
     box-shadow:5px 5px 0 var(--ink);
     animation:heroSubtitleEntrance 800ms ease-out 240ms both, heroSubtitlePulse 3.8s ease-in-out 1.2s infinite;
+  }
+  .hero-clouds{
+    position:absolute;
+    inset:30px 0 auto;
+    height:260px;
+    z-index:1;
+    pointer-events:none;
+    overflow:visible;
+  }
+  .hero-cloud{
+    position:absolute;
+    width:190px;
+    height:62px;
+    border:4px solid var(--ink);
+    border-radius:999px;
+    background:var(--cream);
+    box-shadow:7px 7px 0 rgba(11,11,15,0.22);
+    opacity:0.92;
+    animation:cloudBounce 4.8s ease-in-out infinite;
+  }
+  .hero-cloud::before,
+  .hero-cloud::after{
+    content:"";
+    position:absolute;
+    background:inherit;
+    border:4px solid var(--ink);
+    border-bottom:0;
+    border-radius:999px 999px 0 0;
+  }
+  .hero-cloud::before{
+    width:78px;
+    height:54px;
+    left:28px;
+    top:-34px;
+  }
+  .hero-cloud::after{
+    width:92px;
+    height:68px;
+    right:30px;
+    top:-48px;
+  }
+  .hero-cloud.cloud-one{
+    left:6%;
+    top:72px;
+    transform:rotate(-3deg);
+  }
+  .hero-cloud.cloud-two{
+    right:5%;
+    top:28px;
+    width:220px;
+    transform:rotate(3deg) scale(0.92);
+    animation-delay:-1.3s;
+  }
+  .hero-cloud.cloud-three{
+    left:50%;
+    top:132px;
+    width:160px;
+    opacity:0.78;
+    transform:translateX(-50%) rotate(1deg) scale(0.78);
+    animation-delay:-2.4s;
+  }
+  .hero-cloud.cloud-four{
+    left:24%;
+    top:18px;
+    width:138px;
+    opacity:0.72;
+    transform:rotate(4deg) scale(0.68);
+    animation-delay:-3.1s;
+  }
+  .hero-cloud.cloud-five{
+    right:27%;
+    top:152px;
+    width:150px;
+    opacity:0.74;
+    transform:rotate(-4deg) scale(0.72);
+    animation-delay:-0.7s;
+  }
+  @keyframes cloudBounce{
+    0%,100%{ translate:0 0; }
+    50%{ translate:0 -12px; }
   }
   @keyframes heroNameEntrance{
     from{ opacity:0; transform:translateY(28px) rotate(-2deg) scale(0.94); }
@@ -205,8 +329,17 @@
   }
 
   @media (max-width:860px){
-    .stamp{ width:88px; height:88px; top:-20px; }
-    .stamp svg{ width:74px; height:74px; }
+    .stamp{ width:126px; height:126px; top:-20px; }
+    .stamp svg{ width:108px; height:108px; }
+    .stamp-reveal{ top:128px; right:0; width:190px; }
+    .stamp-reveal .latin{ font-size:1rem; }
+    .stamp-reveal .english{ font-size:0.58rem; }
+    .hero-clouds{ height:220px; top:50px; opacity:0.75; }
+    .hero-cloud{ width:135px; height:48px; }
+    .hero-cloud.cloud-two{ width:150px; right:-18px; }
+    .hero-cloud.cloud-three,
+    .hero-cloud.cloud-four,
+    .hero-cloud.cloud-five{ display:none; }
   }
 
   /* ---------- INTERACTIVE GUITAR STRIP ---------- */
@@ -395,108 +528,6 @@
     display:flex;
     gap:20px;
     align-items:flex-start;
-  }
-  .about-sandbox{
-    max-width:760px;
-    border:5px solid var(--contrast);
-    border-radius:var(--radius);
-    box-shadow:10px 10px 0 var(--accent);
-    background:
-      linear-gradient(180deg, rgba(255,248,236,0.98), rgba(255,248,236,0.94)),
-      radial-gradient(circle at top left, rgba(236,72,153,0.16), transparent 35%),
-      radial-gradient(circle at bottom right, rgba(56,189,248,0.16), transparent 30%);
-    overflow:hidden;
-  }
-  .about-sandbox__top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:16px;
-    padding:18px 20px 14px;
-    border-bottom:3px dashed rgba(11,11,15,0.35);
-    background:rgba(255,255,255,0.4);
-  }
-  .about-sandbox__label{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-family:'Gasoek One', sans-serif;
-    font-size:1rem;
-    color:var(--ink);
-    letter-spacing:0.04em;
-  }
-  .about-sandbox__dot{
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 0 3px rgba(11,11,15,0.08);
-  }
-  .about-sandbox__actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-  .about-sandbox__actions button{
-    border:3px solid var(--ink);
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:999px;
-    padding:8px 14px;
-    font-family:'Inter', sans-serif;
-    font-weight:700;
-    font-size:0.78rem;
-    cursor:pointer;
-    box-shadow:4px 4px 0 var(--ink);
-    transition:transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-  }
-  .about-sandbox__actions button:hover{
-    transform:translate(-2px,-2px);
-    box-shadow:6px 6px 0 var(--ink);
-    background:var(--contrast);
-  }
-  .about-sandbox__stage{
-    position:relative;
-    height:340px;
-    background:
-      linear-gradient(180deg, rgba(255,248,236,0.4), rgba(255,248,236,0.1)),
-      repeating-linear-gradient(90deg, rgba(11,11,15,0.045) 0 1px, transparent 1px 48px),
-      repeating-linear-gradient(0deg, rgba(11,11,15,0.045) 0 1px, transparent 1px 48px);
-    overflow:hidden;
-    cursor:crosshair;
-  }
-  .about-sandbox__hint{
-    position:absolute;
-    left:16px;
-    bottom:16px;
-    max-width:220px;
-    background:rgba(11,11,15,0.92);
-    color:var(--contrast);
-    border:3px solid var(--accent);
-    border-radius:14px;
-    padding:10px 12px;
-    font-size:0.8rem;
-    line-height:1.45;
-    pointer-events:none;
-  }
-  .about-sandbox__grains{
-    position:absolute;
-    inset:0;
-  }
-  .about-sandbox__grain{
-    position:absolute;
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    background:radial-gradient(circle at 30% 30%, #fff9, rgba(255,215,0,0.95) 35%, rgba(212,175,55,0.95) 70%, rgba(11,11,15,0.95) 100%);
-    box-shadow:0 0 0 2px rgba(11,11,15,0.35);
-    will-change:transform;
-    pointer-events:none;
-  }
-  .about-sandbox__grain.is-dragging{
-    width:16px;
-    height:16px;
-    box-shadow:0 0 0 3px rgba(11,11,15,0.35), 0 0 14px rgba(255,215,0,0.5);
   }
   .icon-square{
     flex-shrink:0;
@@ -794,15 +825,14 @@
   }
 
   @media (prefers-reduced-motion: reduce){
-    .stamp, .marquee-track, .gs-callout, .hero h1.giant, .hero-subtitle, .me-callout, .me-arrow, .me-arrow-head{ animation:none; }
+    .stamp, .marquee-track, .gs-callout, .hero h1.giant, .hero-subtitle, .me-callout, .me-arrow, .me-arrow-head, .stamp-reveal.is-visible{ animation:none; }
+    .stamp-reveal.is-visible{ opacity:1; transform:none; }
   }
 
   @media (max-width:640px){
     nav ul{ gap:14px; font-size:0.72rem; }
     .wrap, .hero, .about, .work, .projects, footer{ padding-left:20px; padding-right:20px; }
     .modal{ padding:26px; }
-    .about-sandbox__stage{ height:280px; }
-    .about-sandbox__top{ flex-direction:column; align-items:flex-start; }
   }
 </style>
 </head>
@@ -821,16 +851,29 @@
   </nav>
 
   <section class="hero" id="top">
-    <div class="stamp">
+    <div class="stamp" id="stampToggle" role="button" tabindex="0" aria-label="Toggle stamp translation">
       <svg viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="46" fill="none" stroke="#0B0B0F" stroke-width="1.5" stroke-dasharray="4 5"/>
-        <path id="stampCircle" d="M50,50 m-34,0 a34,34 0 1,1 68,0 a34,34 0 1,1 -68,0" fill="none"/>
+        <path id="stampTopArc" d="M16,50 A34,34 0 0,1 84,50" fill="none"/>
+        <path id="stampBottomArc" d="M84,50 A34,34 0 0,1 16,50" fill="none"/>
         <text font-family="Alumni Sans, sans-serif" font-weight="800" font-size="12" letter-spacing="1.5" fill="#0B0B0F">
-          <textPath href="#stampCircle" startOffset="0%">AI BUILDER • AI BUILDER •</textPath>
+          <textPath id="stampTextTop" href="#stampTopArc" startOffset="50%" text-anchor="middle" textLength="98" lengthAdjust="spacingAndGlyphs">VITAM IMPENDERE VERO</textPath>
+          <textPath id="stampTextBottom" href="#stampBottomArc" startOffset="50%" text-anchor="middle" textLength="98" lengthAdjust="spacingAndGlyphs">VITAM IMPENDERE VERO</textPath>
         </text>
       </svg>
     </div>
+    <div class="stamp-reveal" id="stampReveal" aria-hidden="true">
+      <div class="latin">VITAM IMPENDERE VERO</div>
+      <div class="english">To dedicate one's life to truth</div>
+    </div>
     <div class="hero-inner">
+      <div class="hero-clouds" aria-hidden="true">
+        <span class="hero-cloud cloud-one"></span>
+        <span class="hero-cloud cloud-two"></span>
+        <span class="hero-cloud cloud-three"></span>
+        <span class="hero-cloud cloud-four"></span>
+        <span class="hero-cloud cloud-five"></span>
+      </div>
       <div class="hero-title-lockup" aria-label="Fayzaan Saeed, Builder Portfolio">
         <h1 class="giant">Fayzaan<br>Saeed</h1>
         <div class="hero-subtitle">Builder Portfolio</div>
@@ -898,19 +941,10 @@
   <section class="about" id="about">
     <div class="wrap">
       <span class="section-tag">About</span>
-      <h2 class="giant">Hey, I'm Fayzaan.</h2>
-      <div class="about-sandbox">
-        <div class="about-sandbox__top">
-          <div class="about-sandbox__label"><span class="about-sandbox__dot"></span>AI Sandbox</div>
-          <div class="about-sandbox__actions">
-            <button type="button" id="sandboxShuffle">Shuffle</button>
-            <button type="button" id="sandboxReset">Reset</button>
-          </div>
-        </div>
-        <div class="about-sandbox__stage" id="aboutSandboxStage" aria-label="Interactive AI sandbox">
-          <div class="about-sandbox__grains" id="aboutSandboxGrains" aria-hidden="true"></div>
-          <div class="about-sandbox__hint">Drag the grains around. They bounce, settle, and keep shifting as the page moves.</div>
-        </div>
+      <h2 class="giant">Hey, I'm Fayzaan</h2>
+      <div class="about-card">
+        <span class="icon-square" style="background:var(--sky)">👋</span>
+        <p>This page is basically my sandbox for actually building things with AI, instead of just talking about it. Some days that means shipping a brand-new skill. Other days it's fixing a workflow that used to eat my whole morning. Either way, it keeps growing every time I finish something, so swing by now and then and see what's new.</p>
       </div>
     </div>
   </section>
@@ -958,7 +992,7 @@
       <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,70 L0,70 Z" fill="#8B5CF6"/></svg>
     </div>
     <h2 class="giant">Let's connect</h2>
-    <p class="tag">Open to chatting about AI, building, or the program.</p>
+    <p class="tag">Open to chatting about AI, building, or the program</p>
     <div class="contact-links">
       <a href="mailto:fayzaan.saeed2002@gmail.com">Email</a>
       <a href="https://linkedin.com/in/fayzaansaeed" target="_blank" rel="noopener">LinkedIn</a>
@@ -1117,8 +1151,8 @@
     <div class="doc-block">
       <h4>Techniques Used</h4>
       <ul class="technique-list">
-        <li>One self-contained script appended at the end of the page — never edits existing markup, classes, or copy</li>
-        <li>A fixed full-viewport pane using <code>backdrop-filter</code> for the gold duotone, so the real DOM's styles (and its <code>position:fixed</code> elements) are never touched</li>
+        <li>One self-contained script appended at the end of the page — the toggle sets <code>html[data-theme="gold"]</code>, and the theme CSS does the rest</li>
+        <li>A real metallic palette swap using page variables and section gradients, instead of a full-screen tint layer over the design</li>
         <li>A shared canvas for both the ambient falling sparkles and a fairy-dust trail</li>
         <li>A small time-based state machine (follow &rarr; wander &rarr; swarm &rarr; recombine) driven purely by how long it's been since the cursor last moved</li>
         <li>Staggered per-butterfly arrival timing so the swarm converges and grows in, instead of snapping back instantly</li>
@@ -1163,10 +1197,10 @@
       };
       const gold = {
         title: "Gold Mode",
-        desc: "A toggleable amber-gold skin for this site — duotone recolor, drifting sparkles, and a cursor-chasing butterfly. Flip the switch at the bottom of the page.",
+        desc: "A toggleable metallic-gold skin for this site — real palette swap, drifting sparkles, and a cursor-chasing butterfly. Flip the switch at the bottom of the page.",
         icon: "✨",
         build: renderSteps([
-          "Wrote a <code>/gold-mode</code> skill spec: a fully reversible visual overlay, never touching real content",
+          "Wrote a <code>/gold-mode</code> skill spec: a fully reversible theme mode controlled by one page attribute",
           "Had Claude install it as one script with a toggle fixed to the bottom of the page, so it's reachable from anywhere and immune to future site edits",
           "Iterated on the details — vivid gold colors, a much bigger butterfly, an idle wander &rarr; swarm &rarr; recombine cycle, and a fairy-dust trail",
           "This very card only shows up while Gold Mode is switched on — try the toggle"
@@ -1337,159 +1371,47 @@
     });
   })();
 
-  /* About sandbox: a tiny animated sand table that can be dragged around,
-     shuffled, or reset. The grains keep moving a little on their own so the
-     About section feels like a living workspace instead of a static panel. */
   (function(){
-    const stage = document.getElementById('aboutSandboxStage');
-    const grainsWrap = document.getElementById('aboutSandboxGrains');
-    const shuffleBtn = document.getElementById('sandboxShuffle');
-    const resetBtn = document.getElementById('sandboxReset');
-    if (!stage || !grainsWrap) return;
+    const stamp = document.getElementById('stampToggle');
+    const stampTextTop = document.getElementById('stampTextTop');
+    const stampTextBottom = document.getElementById('stampTextBottom');
+    const stampReveal = document.getElementById('stampReveal');
+    if (!stamp || !stampTextTop || !stampTextBottom || !stampReveal) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const GRAIN_COUNT = 26;
-    const grains = [];
-    let width = 0;
-    let height = 0;
-    let dragId = null;
-    let dragOffsetX = 0;
-    let dragOffsetY = 0;
+    const latinTop = 'VITAM IMPENDERE VERO';
+    const latinBottom = 'VITAM IMPENDERE VERO';
+    const englishTop = "TO DEDICATE ONE'S";
+    const englishBottom = 'LIFE TO TRUTH';
+    let translated = false;
+    let clickTimer = null;
 
-    function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
-    function measure(){
-      const r = stage.getBoundingClientRect();
-      width = r.width;
-      height = r.height;
-    }
-    function makeGrain(){
-      const el = document.createElement('div');
-      el.className = 'about-sandbox__grain';
-      grainsWrap.appendChild(el);
-      const size = 9 + Math.random() * 10;
-      const grain = {
-        el,
-        x: Math.random() * Math.max(1, width - size),
-        y: Math.random() * Math.max(1, height - size),
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        size,
-        spin: (Math.random() - 0.5) * 0.04,
-        angle: Math.random() * Math.PI * 2,
-        drag: false
-      };
-      el.style.width = `${size}px`;
-      el.style.height = `${size}px`;
-      placeGrain(grain);
-      return grain;
-    }
-    function placeGrain(g){
-      g.el.style.transform = `translate(${g.x}px, ${g.y}px) rotate(${g.angle}rad)`;
-    }
-    function resetGrains(){
-      measure();
-      grains.forEach(g => g.el.remove());
-      grains.length = 0;
-      for (let i = 0; i < GRAIN_COUNT; i++) grains.push(makeGrain());
-    }
-    function shuffleGrains(){
-      measure();
-      grains.forEach(g => {
-        g.x = Math.random() * Math.max(1, width - g.size);
-        g.y = Math.random() * Math.max(1, height - g.size);
-        g.vx = (Math.random() - 0.5) * 1.4;
-        g.vy = (Math.random() - 0.5) * 1.4;
-        g.angle = Math.random() * Math.PI * 2;
-        placeGrain(g);
-      });
-    }
-    function pointerPos(e){
-      const r = stage.getBoundingClientRect();
-      return { x: e.clientX - r.left, y: e.clientY - r.top };
-    }
-    function onDown(e){
-      const {x, y} = pointerPos(e);
-      let best = null;
-      let bestDist = 28;
-      for (const g of grains){
-        const cx = g.x + g.size / 2;
-        const cy = g.y + g.size / 2;
-        const d = Math.hypot(cx - x, cy - y);
-        if (d < bestDist){
-          best = g;
-          bestDist = d;
-        }
-      }
-      if (!best) return;
-      dragId = e.pointerId;
-      best.drag = true;
-      best.el.classList.add('is-dragging');
-      dragOffsetX = x - best.x;
-      dragOffsetY = y - best.y;
-      try { stage.setPointerCapture(e.pointerId); } catch(err){}
-    }
-    function onMove(e){
-      if (dragId !== e.pointerId) return;
-      const {x, y} = pointerPos(e);
-      const g = grains.find(item => item.drag);
-      if (!g) return;
-      g.x = clamp(x - dragOffsetX, 0, width - g.size);
-      g.y = clamp(y - dragOffsetY, 0, height - g.size);
-      g.vx = 0;
-      g.vy = 0;
-      g.angle += 0.05;
-      placeGrain(g);
-    }
-    function onUp(e){
-      if (dragId !== e.pointerId) return;
-      const g = grains.find(item => item.drag);
-      if (g){
-        g.drag = false;
-        g.el.classList.remove('is-dragging');
-        g.vx = (Math.random() - 0.5) * 1.3;
-        g.vy = (Math.random() - 0.5) * 1.3;
-      }
-      dragId = null;
-    }
-    function tick(){
-      if (!reduceMotion){
-        const sway = Math.sin(performance.now() / 900) * 0.006;
-        for (const g of grains){
-          if (g.drag) continue;
-          g.vy += 0.03;
-          g.vx += sway;
-          g.vx *= 0.988;
-          g.vy *= 0.994;
-          g.x += g.vx;
-          g.y += g.vy;
-          g.angle += g.spin;
-          if (g.x <= 0){ g.x = 0; g.vx *= -0.78; }
-          if (g.x >= width - g.size){ g.x = width - g.size; g.vx *= -0.78; }
-          if (g.y <= 0){ g.y = 0; g.vy *= -0.78; }
-          if (g.y >= height - g.size){ g.y = height - g.size; g.vy *= -0.62; }
-          placeGrain(g);
-        }
-      }
-      requestAnimationFrame(tick);
+    function toggleStampText(){
+      translated = !translated;
+      stampTextTop.textContent = translated ? englishTop : latinTop;
+      stampTextBottom.textContent = translated ? englishBottom : latinBottom;
+      stamp.setAttribute('aria-label', translated ? 'Show Latin stamp phrase' : 'Show stamp translation');
     }
 
-    resetGrains();
-    stage.addEventListener('pointerdown', onDown);
-    stage.addEventListener('pointermove', onMove);
-    stage.addEventListener('pointerup', onUp);
-    stage.addEventListener('pointercancel', onUp);
-    stage.addEventListener('pointerleave', onUp);
-    shuffleBtn?.addEventListener('click', shuffleGrains);
-    resetBtn?.addEventListener('click', resetGrains);
-    window.addEventListener('resize', () => {
-      measure();
-      grains.forEach(g => {
-        g.x = clamp(g.x, 0, Math.max(0, width - g.size));
-        g.y = clamp(g.y, 0, Math.max(0, height - g.size));
-        placeGrain(g);
-      });
+    function showStampReveal(){
+      stampReveal.classList.remove('is-visible');
+      void stampReveal.offsetWidth;
+      stampReveal.classList.add('is-visible');
+    }
+
+    stamp.addEventListener('click', () => {
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(toggleStampText, 220);
     });
-    tick();
+    stamp.addEventListener('dblclick', (event) => {
+      event.preventDefault();
+      clearTimeout(clickTimer);
+      showStampReveal();
+    });
+    stamp.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      toggleStampText();
+    });
   })();
 </script>
 
@@ -1737,16 +1659,10 @@
 </script>
 
 <!-- ── Gold Mode ─────────────────────────────────────────────────────────
-     Self-contained, additive, fully reversible. This single script:
-       1. injects its own <style> tag (nothing here touches existing CSS)
-       2. appends its own overlay elements to <body> as the LAST nodes
-          (tint layer, particle canvas, cursor-following butterfly, toggle)
-       3. never reads or depends on any of the site's own class names,
-          section ids, or content — it only ever looks at <html> and <body>
-     Because it doesn't reference anything about the page's content, future
-     edits to the site (new sections, reworded copy, reordered cards, etc.)
-     can't break it — there's nothing here for those edits to collide with.
-     Toggle state persists via localStorage and restores on reload.
+     Toggleable metallic-gold theme. The switch sets html[data-theme="gold"],
+     then the injected CSS remaps the page's color tokens and key section
+     surfaces instead of using a full-screen tint layer. Particles, butterfly,
+     and the bottom toggle remain additive decoration.
 
      Butterfly idle cycle (any mouse/touch movement snaps straight back to
      following the cursor, mid-flight if need be):
@@ -1781,7 +1697,7 @@
   /* 1. inject styles ----------------------------------------------------- */
   var style = document.createElement('style');
   style.id = 'gold-mode-styles';
-  style.textContent = `
+    style.textContent = `
     :root{
       /* Vivid metallic gold, not sepia/brown */
       --gold-highlight:#FFD700;
@@ -1789,16 +1705,94 @@
       --gold-shadow:#4A3200;
       --gold-bg:#8A6300;
     }
-    #gold-mode-tint{
-      position:fixed; inset:0;
-      z-index:999990;
-      pointer-events:none;
-      opacity:0;
-      transition:opacity .5s ease;
-      backdrop-filter: grayscale(1) sepia(1) saturate(6) hue-rotate(15deg) brightness(1.05) contrast(1.1);
-      -webkit-backdrop-filter: grayscale(1) sepia(1) saturate(6) hue-rotate(15deg) brightness(1.05) contrast(1.1);
+    html[data-theme="gold"]{
+      --purple:#C99421;
+      --ink:#120D05;
+      --accent:#F7D86A;
+      --contrast:#FFF9DF;
+      --cream:#FFF0B8;
+      --pink:#E8B84A;
+      --sky:#FFE8A3;
+      --emerald:#D7B44B;
+      --coral:#FFCC5C;
+      --violet:#B88718;
+      --shadow-pop:8px 8px 0 #120D05;
+      --shadow-pop-sm:5px 5px 0 #120D05;
     }
-    html[data-theme="gold"] #gold-mode-tint{ opacity:1; }
+    html[data-theme="gold"] body{
+      background:#120D05;
+      color:#120D05;
+    }
+    html[data-theme="gold"] nav,
+    html[data-theme="gold"] .marquee,
+    html[data-theme="gold"] footer{
+      background:linear-gradient(135deg, #120D05 0%, #362506 45%, #120D05 100%);
+      border-color:#F7D86A;
+    }
+    html[data-theme="gold"] .hero,
+    html[data-theme="gold"] .guitar-strip{
+      background:
+        radial-gradient(circle at 22% 18%, rgba(255,248,198,.42), transparent 28%),
+        linear-gradient(135deg, #7B5209 0%, #D4AF37 32%, #FFF0A6 48%, #B67B12 64%, #6A4505 100%);
+    }
+    html[data-theme="gold"] .about{
+      background:
+        radial-gradient(circle at 78% 12%, rgba(255,232,150,.16), transparent 30%),
+        linear-gradient(160deg, #140E04 0%, #392706 52%, #130D04 100%);
+    }
+    html[data-theme="gold"] .work{
+      background:
+        linear-gradient(135deg, #6E4708 0%, #C99722 34%, #F8DE74 52%, #A66E0E 72%, #4B3005 100%);
+    }
+    html[data-theme="gold"] .work .section-tag,
+    html[data-theme="gold"] .work h2.giant,
+    html[data-theme="gold"] footer h2.giant,
+    html[data-theme="gold"] footer p.tag{
+      color:#FFFFFF !important;
+      opacity:1;
+    }
+    html[data-theme="gold"] .projects .section-tag,
+    html[data-theme="gold"] .projects h2.giant{
+      color:#2B1A03;
+    }
+    html[data-theme="gold"] .projects{
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,244,180,.24), transparent 26%),
+        linear-gradient(150deg, #FFF0B8 0%, #E6BC45 45%, #B98216 100%);
+    }
+    html[data-theme="gold"] .about-card,
+    html[data-theme="gold"] .work-card,
+    html[data-theme="gold"] .project-card,
+    html[data-theme="gold"] .modal,
+    html[data-theme="gold"] .hero-subtitle{
+      background:linear-gradient(145deg, #FFF8D4 0%, #FFE28A 46%, #D4AF37 100%);
+      border-color:#120D05;
+      box-shadow:8px 8px 0 #7A4E08;
+    }
+    html[data-theme="gold"] .section-wave path{
+      fill:#D4AF37;
+    }
+    html[data-theme="gold"] .hero h1.giant{
+      color:#120D05;
+      text-shadow:7px 7px 0 #FFF0A6, 11px 11px 0 rgba(78,49,5,.55);
+    }
+    html[data-theme="gold"] .hero-title-lockup,
+    html[data-theme="gold"] .stamp{
+      filter:saturate(1.15) contrast(1.06);
+    }
+    html[data-theme="gold"] .gs-fill,
+    html[data-theme="gold"] .gs-pins circle{
+      fill:#120D05;
+    }
+    html[data-theme="gold"] .gs-ring-outer,
+    html[data-theme="gold"] .gs-dot,
+    html[data-theme="gold"] .gs-string.gs-active{
+      stroke:#FFF0A6;
+      fill:#FFF0A6;
+    }
+    #gold-mode-tint{
+      display:none;
+    }
 
     #gold-mode-particles{
       position:fixed; inset:0;
