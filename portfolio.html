@@ -145,11 +145,11 @@
     fill:var(--ink);
   }
   .stamp-reveal{
-    position:absolute;
-    top:170px;
-    right:12px;
-    width:260px;
-    z-index:5;
+    position:fixed;
+    top:86px;
+    left:50%;
+    width:min(920px, calc(100vw - 40px));
+    z-index:999998;
     text-align:center;
     pointer-events:none;
     color:var(--ink);
@@ -157,36 +157,39 @@
     font-weight:900;
     text-transform:uppercase;
     letter-spacing:0.1em;
-    line-height:0.95;
+    line-height:0.92;
     opacity:0;
-    transform:translateY(-6px) scale(0.96);
+    transform:translate(-50%, -14px) scale(0.96);
   }
   .stamp-reveal .latin{
-    font-size:1.35rem;
+    font-size:clamp(2.2rem, 7vw, 5.8rem);
     font-weight:900;
   }
   .stamp-reveal .english{
-    margin-top:6px;
+    margin-top:12px;
     font-family:'Inter', sans-serif;
-    font-size:0.72rem;
+    font-size:clamp(0.86rem, 2vw, 1.35rem);
     font-weight:900;
-    letter-spacing:0.08em;
+    letter-spacing:0.1em;
   }
   .stamp-reveal.is-visible{
-    animation:stampRevealHold 10s ease forwards;
+    animation:stampRevealHold 3s ease forwards;
   }
   @keyframes stampRevealHold{
-    0%{ opacity:0; transform:translateY(-8px) scale(0.96); filter:brightness(1); }
-    8%,78%{ opacity:1; transform:translateY(0) scale(1); filter:brightness(1); }
-    84%{ opacity:1; filter:brightness(1.5); text-shadow:0 0 10px rgba(255,215,0,0.75); }
-    92%{ opacity:0.62; filter:brightness(1.2); text-shadow:0 0 16px rgba(255,215,0,0.5); }
-    100%{ opacity:0; transform:translateY(-5px) scale(0.98); filter:brightness(1.8); text-shadow:0 0 22px rgba(255,215,0,0); }
+    0%{ opacity:0; transform:translate(-50%, -18px) scale(0.94); filter:brightness(1); }
+    14%,64%{ opacity:1; transform:translate(-50%, 0) scale(1); filter:brightness(1); }
+    30%{ filter:brightness(1.45); text-shadow:0 0 12px rgba(255,215,0,0.75); }
+    48%{ filter:brightness(1.12); text-shadow:0 0 4px rgba(255,215,0,0.3); }
+    74%{ opacity:0.82; filter:brightness(1.55); text-shadow:0 0 18px rgba(255,215,0,0.65); }
+    100%{ opacity:0; transform:translate(-50%, -10px) scale(0.98); filter:brightness(1.8); text-shadow:0 0 24px rgba(255,215,0,0); }
   }
   @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
 
   .hero-title-lockup{
     position:relative;
     z-index:2;
+    pointer-events:none;
+    user-select:none;
     min-height:260px;
     display:flex;
     flex-direction:column;
@@ -223,11 +226,12 @@
     inset:30px 0 auto;
     height:260px;
     z-index:1;
-    pointer-events:none;
+    pointer-events:auto;
     overflow:visible;
   }
   .hero-cloud{
     position:absolute;
+    pointer-events:auto;
     width:190px;
     height:62px;
     border:4px solid var(--ink);
@@ -235,6 +239,10 @@
     background:var(--cream);
     box-shadow:7px 7px 0 rgba(11,11,15,0.22);
     opacity:0.92;
+    cursor:pointer;
+    user-select:none;
+    touch-action:manipulation;
+    transform:var(--cloud-rest, none);
     animation:cloudBounce 4.8s ease-in-out infinite;
   }
   .hero-cloud::before,
@@ -261,13 +269,13 @@
   .hero-cloud.cloud-one{
     left:6%;
     top:72px;
-    transform:rotate(-3deg);
+    --cloud-rest:rotate(-3deg);
   }
   .hero-cloud.cloud-two{
     right:5%;
     top:28px;
     width:220px;
-    transform:rotate(3deg) scale(0.92);
+    --cloud-rest:rotate(3deg) scale(0.92);
     animation-delay:-1.3s;
   }
   .hero-cloud.cloud-three{
@@ -275,7 +283,7 @@
     top:132px;
     width:160px;
     opacity:0.78;
-    transform:translateX(-50%) rotate(1deg) scale(0.78);
+    --cloud-rest:translateX(-50%) rotate(1deg) scale(0.78);
     animation-delay:-2.4s;
   }
   .hero-cloud.cloud-four{
@@ -283,7 +291,7 @@
     top:18px;
     width:138px;
     opacity:0.72;
-    transform:rotate(4deg) scale(0.68);
+    --cloud-rest:rotate(4deg) scale(0.68);
     animation-delay:-3.1s;
   }
   .hero-cloud.cloud-five{
@@ -291,12 +299,67 @@
     top:152px;
     width:150px;
     opacity:0.74;
-    transform:rotate(-4deg) scale(0.72);
+    --cloud-rest:rotate(-4deg) scale(0.72);
     animation-delay:-0.7s;
   }
   @keyframes cloudBounce{
-    0%,100%{ translate:0 0; }
-    50%{ translate:0 -12px; }
+    0%,100%{ transform:var(--cloud-rest, none) translateY(0); }
+    50%{ transform:var(--cloud-rest, none) translateY(-12px); }
+  }
+  .hero-cloud.is-poked{
+    animation:
+      cloudPoke 560ms cubic-bezier(.18,.89,.32,1.28);
+  }
+  .cloud-puff{
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:0;
+    top:0;
+    border-radius:50%;
+    background:var(--cream);
+    border:2px solid var(--ink);
+    box-shadow:3px 3px 0 rgba(11,11,15,0.18);
+    pointer-events:none;
+    z-index:6;
+    animation:cloudPuffPop 700ms ease-out forwards;
+  }
+  .cloud-fragment{
+    position:absolute;
+    left:0;
+    top:0;
+    width:44px;
+    height:22px;
+    border:3px solid var(--ink);
+    border-radius:999px;
+    background:var(--cream);
+    box-shadow:4px 4px 0 rgba(11,11,15,0.2);
+    pointer-events:none;
+    z-index:7;
+    animation:cloudExplodeCondense 1.45s cubic-bezier(.18,.89,.32,1.12) forwards;
+  }
+  .hero-cloud.is-exploding{
+    opacity:0;
+    pointer-events:none;
+  }
+  @keyframes cloudPuffPop{
+    0%{ opacity:0; transform:translate(-50%, -50%) scale(0.3); }
+    18%{ opacity:1; }
+    100%{ opacity:0; transform:translate(calc(-50% + var(--puff-x)), calc(-50% + var(--puff-y))) scale(1.15); }
+  }
+  @keyframes cloudExplodeCondense{
+    0%{ opacity:0; transform:translate(-50%, -50%) scale(0.25) rotate(0deg); }
+    12%{ opacity:1; }
+    42%{ opacity:1; transform:translate(calc(-50% + var(--boom-x)), calc(-50% + var(--boom-y))) scale(var(--boom-scale)) rotate(var(--boom-rotate)); }
+    78%{ opacity:1; transform:translate(calc(-50% + var(--boom-mid-x)), calc(-50% + var(--boom-mid-y))) scale(0.9) rotate(0deg); }
+    100%{ opacity:0; transform:translate(-50%, -50%) scale(0.2) rotate(0deg); }
+  }
+  @keyframes cloudPoke{
+    0%{ transform:var(--cloud-rest, none) translateY(0) scale(1,1); filter:brightness(1); }
+    28%{ transform:var(--cloud-rest, none) translateY(8px) scale(1.18,0.72); filter:brightness(1.06); }
+    58%{ transform:var(--cloud-rest, none) translateY(-10px) scale(0.88,1.22); filter:brightness(1.12); }
+    82%{ transform:var(--cloud-rest, none) translateY(3px) scale(1.07,0.94); filter:brightness(1.04); }
+    100%{ transform:var(--cloud-rest, none) translateY(0) scale(1,1); filter:brightness(1); }
   }
   @keyframes heroNameEntrance{
     from{ opacity:0; transform:translateY(28px) rotate(-2deg) scale(0.94); }
@@ -331,9 +394,7 @@
   @media (max-width:860px){
     .stamp{ width:126px; height:126px; top:-20px; }
     .stamp svg{ width:108px; height:108px; }
-    .stamp-reveal{ top:128px; right:0; width:190px; }
-    .stamp-reveal .latin{ font-size:1rem; }
-    .stamp-reveal .english{ font-size:0.58rem; }
+    .stamp-reveal{ top:76px; width:calc(100vw - 28px); }
     .hero-clouds{ height:220px; top:50px; opacity:0.75; }
     .hero-cloud{ width:135px; height:48px; }
     .hero-cloud.cloud-two{ width:150px; right:-18px; }
@@ -1319,6 +1380,91 @@
     attributeFilter: ['data-theme']
   });
   syncGoldVariant();
+
+  (function(){
+    const clouds = document.querySelectorAll('.hero-cloud');
+    if (!clouds.length) return;
+    const clickWindowMs = 1500;
+
+    function releaseCloudPuffs(cloud){
+      const burst = [
+        [-36, -30], [-14, -48], [18, -42], [42, -24],
+        [-46, 6], [-18, 28], [20, 30], [50, 6]
+      ];
+      burst.forEach(([x, y], index) => {
+        const puff = document.createElement('span');
+        puff.className = 'cloud-puff';
+        puff.style.left = (cloud.offsetLeft + cloud.offsetWidth / 2) + 'px';
+        puff.style.top = (cloud.offsetTop + cloud.offsetHeight / 2) + 'px';
+        puff.style.setProperty('--puff-x', x + 'px');
+        puff.style.setProperty('--puff-y', y + 'px');
+        puff.style.animationDelay = (index * 22) + 'ms';
+        cloud.parentElement.appendChild(puff);
+        window.setTimeout(() => puff.remove(), 850);
+      });
+    }
+
+    function explodeCloud(cloud){
+      const pieces = [
+        [-96, -54, -22, 1.08], [-54, -92, 16, 0.82], [8, -104, -8, 0.9],
+        [76, -74, 24, 1.02], [118, -18, -18, 0.78], [88, 54, 14, 0.92],
+        [22, 92, -28, 0.84], [-52, 76, 20, 1], [-112, 18, -14, 0.86],
+        [-18, -18, 8, 0.72]
+      ];
+      const parent = cloud.parentElement;
+      const centerX = cloud.offsetLeft + cloud.offsetWidth / 2;
+      const centerY = cloud.offsetTop + cloud.offsetHeight / 2;
+
+      cloud.classList.remove('is-poked');
+      cloud.classList.add('is-exploding');
+
+      pieces.forEach(([x, y, rotate, scale], index) => {
+        const fragment = document.createElement('span');
+        fragment.className = 'cloud-fragment';
+        fragment.style.left = centerX + 'px';
+        fragment.style.top = centerY + 'px';
+        fragment.style.setProperty('--boom-x', x + 'px');
+        fragment.style.setProperty('--boom-y', y + 'px');
+        fragment.style.setProperty('--boom-mid-x', (x * 0.18) + 'px');
+        fragment.style.setProperty('--boom-mid-y', (y * 0.18) + 'px');
+        fragment.style.setProperty('--boom-rotate', rotate + 'deg');
+        fragment.style.setProperty('--boom-scale', scale);
+        fragment.style.animationDelay = (index * 16) + 'ms';
+        parent.appendChild(fragment);
+        window.setTimeout(() => fragment.remove(), 1700);
+      });
+
+      window.setTimeout(() => {
+        cloud.classList.remove('is-exploding');
+        cloud.classList.add('is-poked');
+        window.setTimeout(() => cloud.classList.remove('is-poked'), 560);
+      }, 1350);
+    }
+
+    function pokeCloud(cloud){
+      cloud.classList.remove('is-poked');
+      void cloud.offsetWidth;
+      cloud.classList.add('is-poked');
+      releaseCloudPuffs(cloud);
+      window.setTimeout(() => cloud.classList.remove('is-poked'), 560);
+    }
+
+    clouds.forEach(cloud => {
+      cloud._pokeTimes = [];
+      cloud.addEventListener('pointerdown', event => {
+        event.preventDefault();
+        const now = Date.now();
+        cloud._pokeTimes = cloud._pokeTimes.filter(time => now - time <= clickWindowMs);
+        cloud._pokeTimes.push(now);
+        if (cloud._pokeTimes.length >= 3){
+          cloud._pokeTimes = [];
+          explodeCloud(cloud);
+          return;
+        }
+        pokeCloud(cloud);
+      });
+    });
+  })();
 
   /* Marquee ticker: builds the two scrolling copies at runtime instead of
      hardcoding them, so each copy is always at least as wide as the bar
