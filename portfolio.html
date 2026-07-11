@@ -1189,6 +1189,30 @@
     </div>
   `;
 
+  const signalForgeDoc = `
+    <div class="doc-block">
+      <h4>Tech Stack</h4>
+      <ul class="technique-list">
+        <li>FastAPI + Alembic + PostgreSQL backend (<code>apps/api</code>)</li>
+        <li>Next.js dashboard and guided portfolio allocation planner (<code>apps/web</code>)</li>
+        <li>Shared provider-neutral JSON Schema contracts (<code>packages/contracts</code>) so either side can swap providers without breaking the other</li>
+        <li>OpenAI Responses API with Pydantic structured output for market-impact analysis</li>
+        <li>Docker Compose for full-stack local dev, with beginner-friendly setup scripts</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Engineering Highlights</h4>
+      <ul class="technique-list">
+        <li>Deterministic pipeline — normalize, dedupe, cluster, resolve entities, classify — runs before any paid reasoning call</li>
+        <li>Budget guardrails check daily, provider-monthly, and global-monthly limits before every OpenAI call, queueing work once hard limits hit</li>
+        <li>SSRF-hardened retrieval: HTTPS-only, canonical-domain allowlist, DNS/redirect revalidation, capped response size and timeouts</li>
+        <li>Immutable event history — status changes create new versions instead of overwriting prior analysis</li>
+        <li>Demo mode by default: zero API keys, live feeds, or brokerage connections required to run it</li>
+        <li>53 passing API tests, ruff + mypy strict, and a clean Next.js lint/typecheck/build gate every change</li>
+      </ul>
+    </div>
+  `;
+
   const goldModeDoc = `
     <div class="doc-block">
       <h4>Color Palette</h4>
@@ -1283,6 +1307,21 @@
         "Finished with a bouncing “Click me!” callout so visitors actually discover it"
       ]),
       docs: guitarDoc
+    },
+    {
+      title: "SignalForge",
+      desc: "A market-impact research dashboard and guided portfolio allocation planner — FastAPI + Next.js, with an opt-in pipeline that turns news into structured, budget-capped AI analysis. Research only — it never places trades.",
+      status: "live",
+      icon: "📈",
+      build: renderSteps([
+        "Started with a Phase 1 demo &mdash; a deterministic, no-API-key dashboard with sample market events and a guided portfolio allocation planner",
+        "Built a FastAPI backend and Next.js frontend around a provider-neutral JSON Schema contract, so either side can swap providers without breaking the other",
+        "Added Phase 2 as an opt-in layer: ingestion, normalization, deduplication, clustering, and entity resolution all run before any paid OpenAI call",
+        "Wired OpenAI's Responses API for structured market-impact analysis, with retry/backoff, a single validation-repair pass, and budget caps that queue work once limits are hit",
+        "Locked down retrieval with an HTTPS-only canonical-domain allowlist and SSRF checks on every redirect, since the pipeline treats news content as untrusted evidence",
+        "Shipped it behind Alembic migrations and Docker Compose, with 53 passing API tests, ruff/mypy clean, and demo mode as the default so nothing live turns on by accident"
+      ]),
+      docs: signalForgeDoc
     },
     { title: "Voice Guide Skill", desc: "Details on this one are on the way." },
     { title: "Email Manager Scheduled Task", desc: "Details on this one are on the way." },
