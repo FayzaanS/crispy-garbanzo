@@ -1254,6 +1254,56 @@
     </div>
   `;
 
+  const voiceGuideDoc = `
+    <div class="doc-block">
+      <h4>The 8 Sections</h4>
+      <ul class="technique-list">
+        <li><strong>Core Identity</strong> — who the writer is on the page: role, perspective, default posture</li>
+        <li><strong>Registers</strong> — how tone shifts across casual, professional, and high-stakes contexts</li>
+        <li><strong>Sentence Patterns</strong> — typical length, rhythm, and structure across the emails sampled</li>
+        <li><strong>Rhetorical Moves</strong> — recurring techniques: how points get opened, hedged, and closed</li>
+        <li><strong>Emotional Register</strong> — how warmth, urgency, and frustration actually show up in text</li>
+        <li><strong>Do's and Don'ts</strong> — concrete rules pulled from real examples, not generic advice</li>
+        <li><strong>Quick Reference</strong> — a condensed cheat sheet for fast recall mid-task</li>
+        <li><strong>Calibration Tests</strong> — before/after rewrites used to check the guide actually sounds right</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Build Your Own</h4>
+      <ul class="prompt-list">
+        <li>"Pull my 40 most recent sent emails. Analyze them for tone, register, sentence patterns, and rhetorical moves. Write a structured 8-section voice guide covering Core Identity, Registers, Sentence Patterns, Rhetorical Moves, Emotional Register, Do's and Don'ts, Quick Reference, and Calibration Tests. Save it as a skill so any future writing task can pull from it."</li>
+      </ul>
+    </div>
+  `;
+
+  const emailManagerDoc = `
+    <div class="doc-block">
+      <h4>Skill Instructions</h4>
+      <ul class="technique-list">
+        <li>Triage unread inbox from the last 24 hours into an urgent list and a numbered "everything else" list</li>
+        <li>Silently skip noise — newsletters, automated notifications, CC threads that don't need action</li>
+        <li>Draft replies in my own voice for anything that needs a response, pulling from the voice guide skill</li>
+        <li>Meeting requests are always flagged for manual review, never auto-answered</li>
+        <li>Never sends anything on its own — every draft is presented for review first</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Scheduled Task Setup</h4>
+      <ul class="technique-list">
+        <li>Runs automatically every morning via a scheduled task — no manual trigger needed</li>
+        <li>Reads directly from Gmail through a connected tool, no separate inbox export</li>
+        <li>Calls the email-manager skill, which calls the voice guide skill for any drafts</li>
+        <li>Output lands as a triaged summary plus draft replies, ready to review over coffee</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Build Your Own</h4>
+      <ul class="prompt-list">
+        <li>"Connect my Gmail. Build a skill that triages my unread inbox from the last 24 hours into an urgent list and an everything-else list, skips newsletters and automated noise, and drafts replies in my voice for anything that needs one — flag meeting requests for me instead of answering them. Never send automatically, always show me drafts first. Wrap it in a scheduled task that runs every morning."</li>
+      </ul>
+    </div>
+  `;
+
   const projects = [
     {
       title: "Design System Skill",
@@ -1323,8 +1373,32 @@
       ]),
       docs: signalForgeDoc
     },
-    { title: "Voice Guide Skill", desc: "Details on this one are on the way." },
-    { title: "Email Manager Scheduled Task", desc: "Details on this one are on the way." },
+    {
+      title: "Voice Guide Skill",
+      desc: "A psychological profile of how I write, turned into an AI skill any tool can use.",
+      status: "live",
+      icon: "🗣️",
+      build: renderSteps([
+        "Pulled my 40 most recent sent emails",
+        "Used Claude to analyze tone, registers, sentence patterns, and rhetorical moves",
+        "Generated a structured 8-section voice guide",
+        "Saved it as a <code>humanize-writing</code> skill so Claude can write in my voice on any task"
+      ]),
+      docs: voiceGuideDoc
+    },
+    {
+      title: "Email Manager Scheduled Task",
+      desc: "A scheduled task that triages my inbox every morning and drafts replies in my voice.",
+      status: "live",
+      icon: "📧",
+      build: renderSteps([
+        "Connected Gmail to Claude",
+        "Built an <code>email-manager</code> skill that filters noise and prioritizes what matters",
+        "Wired it to my voice guide skill so drafts sound like me",
+        "Wrapped it in a scheduled task that runs every morning"
+      ]),
+      docs: emailManagerDoc
+    },
     { title: "Custom Workflow", desc: "Details on this one are on the way." },
     { title: "Spreadsheet Analysis", desc: "Details on this one are on the way." },
     { title: "Data Analysis Presentation", desc: "Details on this one are on the way." },
