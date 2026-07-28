@@ -1304,6 +1304,59 @@
     </div>
   `;
 
+  const spreadsheetAnalysisDoc = `
+    <div class="doc-block">
+      <h4>The Dataset</h4>
+      <ul class="technique-list">
+        <li><code>college-analysis.xlsx</code> — 200 US universities, documented in the workbook's own Notes tab</li>
+        <li>Merged from two source files: <code>college-data.csv</code> (College Scorecard, Nobel Prize API, NCAA) and <code>college_premium_by_state.csv</code> (US Census, BEA), joined on state</li>
+        <li>Headline metric: <strong>Real ROI</strong> — cost-of-living-adjusted 10-year median earnings ÷ four-year cost of attendance</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>The Charts</h4>
+      <ul class="technique-list">
+        <li><strong>Cost vs Earnings</strong> — scatter plot, 4-year cost against median 10-year earnings</li>
+        <li><strong>Tuition Comparison</strong> — bar chart, in-state vs out-of-state</li>
+        <li>Both were already built into the workbook on their own tabs — the analysis read them, plus every calculated column and all 200 rows, to surface three headline findings</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Build Your Own</h4>
+      <ul class="prompt-list">
+        <li>"Load this spreadsheet. Give me an overview of the columns and recommend computed columns worth adding. Write the formulas for them and run them across every row. Then look at any existing charts alongside the calculated columns, and tell me the most interesting patterns, outliers, and correlations you find."</li>
+      </ul>
+    </div>
+  `;
+
+  const dataPresentationDoc = `
+    <div class="doc-block">
+      <h4>The Outline</h4>
+      <ul class="layout-list">
+        <li>None of your five schools made the top half</li>
+        <li>A $247K degree returns less than a $27K one</li>
+        <li>Michigan residency is worth 151 ranking spots</li>
+        <li>The cheapest school is the one you can't evaluate</li>
+        <li>We picked all five on reputation, and none survived the cost test</li>
+        <li>Three questions to ask from here on</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Design Choices</h4>
+      <ul class="technique-list">
+        <li>Built with the <code>dave2-design</code> skill, using its reference cobalt/black/gold palette rather than a custom scheme</li>
+        <li>Exported to PDF — no install required for family to open and read it</li>
+        <li>Audience-first structure: every slide answers "how does this change what a parent should ask," not just "what does the data show"</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Build Your Own</h4>
+      <ul class="prompt-list">
+        <li>"Take this dataset and analysis and outline a slide deck story for [your audience] — lead with the counterintuitive finding, build toward a specific reframe, end with concrete next steps. Then build the deck with my design skill using its reference palette, and export it as a PDF."</li>
+      </ul>
+    </div>
+  `;
+
   const projects = [
     {
       title: "Design System Skill",
@@ -1400,8 +1453,32 @@
       docs: emailManagerDoc
     },
     { title: "Custom Workflow", desc: "Details on this one are on the way." },
-    { title: "Spreadsheet Analysis", desc: "Details on this one are on the way." },
-    { title: "Data Analysis Presentation", desc: "Details on this one are on the way." },
+    {
+      title: "Spreadsheet Analysis",
+      desc: "Used Claude to clean, calculate, visualize, and surface insights from a real dataset — no formulas required.",
+      status: "live",
+      icon: "📊",
+      build: renderSteps([
+        "Loaded a spreadsheet into Claude",
+        "Asked for an overview and recommended computed columns",
+        "Had Claude write the formulas and run them",
+        "Read the two charts already built into the workbook, plus every calculated column and all 200 rows",
+        "Asked for the most interesting patterns and outliers"
+      ]),
+      docs: spreadsheetAnalysisDoc
+    },
+    {
+      title: "Data Analysis Presentation",
+      desc: "Took a raw dataset and shipped a polished, shareable slide deck — all in one session.",
+      status: "live",
+      icon: "📽️",
+      build: renderSteps([
+        "Outlined the story with Claude before designing",
+        "Built the deck in Claude Design using my design skill",
+        "Exported as PDF and shared it"
+      ]),
+      docs: dataPresentationDoc
+    },
     { title: "File Organization Process", desc: "Details on this one are on the way." },
     { title: "AI Context File", desc: "Details on this one are on the way." },
     { title: "Skills Library", desc: "Details on this one are on the way." }
