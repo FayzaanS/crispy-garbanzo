@@ -1440,6 +1440,31 @@
     </div>
   `;
 
+  const customWorkflowDoc = `
+    <div class="doc-block">
+      <h4>The Rules</h4>
+      <ul class="technique-list">
+        <li>Target roles: entry-level consulting, business analysis, strategy, project management, business development, operations, and supply chain — scoring calibrated for entry-level, not penalized for thin experience</li>
+        <li>Source of truth: only my <code>Master CV</code> counts — never invents experience, metrics, or responsibilities</li>
+        <li>Fit score out of 100 across 7 weighted factors: required qualifications, preferred qualifications, relevant experience, transferable skills, education, location/work authorization, seniority level</li>
+        <li>A low score never stops the workflow — the full pack still gets built, with a clear verdict on whether it's worth applying</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>The Output</h4>
+      <ul class="technique-list">
+        <li>One markdown file per job, saved to <code>Outputs/Application Packs/</code></li>
+        <li>Nine sections in order: active status, fit score with explanation, key requirements, requirement-to-CV evidence table, genuine gaps, resume bullet edits, cover letter, LinkedIn message, and five likely interview questions</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Build Your Own</h4>
+      <ul class="prompt-list">
+        <li>"Write me standing rules for a job-application workflow: target roles, a fit-score rubric, a strict source-of-truth policy for my CV, and a fixed output template. Then run any job posting I give you through those rules every time, without me re-explaining them."</li>
+      </ul>
+    </div>
+  `;
+
   const projects = [
     {
       title: "Design System Skill",
@@ -1535,7 +1560,20 @@
       ]),
       docs: emailManagerDoc
     },
-    { title: "Custom Workflow", desc: "Details on this one are on the way." },
+    {
+      title: "Custom Workflow",
+      desc: "A repeatable job-search system — paste in a posting, get back a fit score, evidence table, cover letter, and interview questions, every time.",
+      status: "live",
+      icon: "⚡",
+      build: renderSteps([
+        "Drop in a job posting each morning — a link, pasted text, or a saved PDF",
+        "<code>job-application-pack</code> checks it against my standing <code>Workflow Rules.md</code> — target roles, active-status check, fit score out of 100 across 7 factors",
+        "Every requirement gets matched to evidence from my <code>Master CV</code> only — gaps get listed, never invented",
+        "Cover letter drafts in my voice via <code>cover-letter-voice</code>; resume bullets get edited without adding numbers or claims that aren't real",
+        "Pack lands in <code>Outputs/Application Packs/</code>, one file per job, ready to review and send"
+      ]),
+      docs: customWorkflowDoc
+    },
     {
       title: "Spreadsheet Analysis",
       desc: "Used Claude to clean, calculate, visualize, and surface insights from a real dataset — no formulas required.",
