@@ -1357,6 +1357,89 @@
     </div>
   `;
 
+  const fileOrgDoc = `
+    <div class="doc-block">
+      <h4>Before → After</h4>
+      <ul class="technique-list">
+        <li><strong>Before:</strong> One flat folder — skill files, session data, PDFs, and drafts all sitting loose together, no subfolders</li>
+        <li><strong>After:</strong> Skill sources separated from packaged <code>.skill</code> installs, workflow config separated from its inputs and outputs, and retired material moved to <code>archive/</code></li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Build Your Own</h4>
+      <ul class="prompt-list">
+        <li>"Audit this folder. Tell me what's actually in here, what's redundant or stale, and propose an organizing structure based on how I actually use these files — not a generic template. Then move everything into that structure and write a short README explaining what lives where."</li>
+      </ul>
+    </div>
+  `;
+
+  const contextFileDoc = `
+    <div class="doc-block">
+      <h4>What Each Section Covers</h4>
+      <ul class="technique-list">
+        <li><strong>About Me</strong> — role, background, and working style, so responses are pitched right without re-explaining myself every time</li>
+        <li><strong>Goals</strong> — current priorities and longer-term direction, so suggestions stay relevant instead of generic</li>
+        <li><strong>How I Like AI to Respond</strong> — tone, formatting, and verbosity preferences, so I'm not editing out the same tics every time</li>
+        <li><strong>Rules</strong> — hard constraints, things to always or never do, so I don't have to repeat them in every chat</li>
+        <li><strong>Tools</strong> — what's connected and available, so the AI reaches for the right one instead of guessing</li>
+        <li><strong>Key Files</strong> — the specific docs and folders to check first, so I'm not re-explaining context that's already written down</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Build Your Own</h4>
+      <div class="type-sample">
+        <pre style="margin:0;font-family:monospace;font-size:0.8rem;line-height:1.6;white-space:pre-wrap;color:var(--ink);">## About Me
+[Your role, background, and what you're generally working on]
+
+## Goals
+[What you're trying to accomplish right now, and longer-term]
+
+## How I Like AI to Respond
+[Tone, format, verbosity, and any communication preferences]
+
+## Rules
+[Hard constraints — things to always or never do]
+
+## Tools
+[Tools, skills, and connectors available for the AI to use]
+
+## Key Files
+[Specific files or folders the AI should check before asking]</pre>
+      </div>
+    </div>
+  `;
+
+  const skillsLibraryDoc = `
+    <div class="doc-block">
+      <h4>Built From Scratch</h4>
+      <ul class="technique-list">
+        <li><code>animation-skill</code> — entrance and build-in animations for slide decks</li>
+        <li><code>email-voice</code> — source workspace behind my voice analysis, feeds humanize-writing</li>
+        <li><code>finding-deck</code> — turns a dataset into a deck built around one counterintuitive finding</li>
+        <li><code>interview-prep</code> — full interview prep docs from my real CV</li>
+        <li><code>referral-reach</code> — finds people to contact at a company and drafts outreach</li>
+        <li><code>skill-doctor</code> — audits my skills library and reports problems</li>
+        <li><code>gold-mode</code> — toggleable metallic-gold theme for this site</li>
+        <li><code>humanize-writing</code> — applies my voice guide so drafts sound like me</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Installed From a Marketplace</h4>
+      <ul class="technique-list">
+        <li><code>cover-letter-voice</code> — drafts cover letters in my own voice</li>
+        <li><code>job-application-pack</code> — full application pack for one job posting</li>
+        <li><code>email-manager</code> — triages my inbox every morning and drafts replies</li>
+        <li><code>dave2-design</code> — the illustrated design system this site is built from</li>
+      </ul>
+    </div>
+    <div class="doc-block">
+      <h4>Build Your Own</h4>
+      <ul class="prompt-list">
+        <li>"Based on the work I do, what skills do you think I should create?"</li>
+      </ul>
+    </div>
+  `;
+
   const projects = [
     {
       title: "Design System Skill",
@@ -1479,9 +1562,77 @@
       ]),
       docs: dataPresentationDoc
     },
-    { title: "File Organization Process", desc: "Details on this one are on the way." },
-    { title: "AI Context File", desc: "Details on this one are on the way." },
-    { title: "Skills Library", desc: "Details on this one are on the way." }
+    {
+      title: "File Organization Process",
+      desc: "Used AI to audit my files and design an organization system that actually fits how I work.",
+      status: "live",
+      icon: "🗂️",
+      build: `
+        <div class="doc-block">
+          <h4>The Folder Tree</h4>
+          <div class="type-sample">
+            <pre style="margin:0;font-family:monospace;font-size:0.8rem;line-height:1.6;white-space:pre;overflow-x:auto;color:var(--ink);">AI Builder/
+├─ animation-skill/       (skill source)
+├─ email-voice/           (skill source)
+├─ finding-deck/          (skill source)
+├─ interview-prep/        (skill source)
+├─ referral-reach/        (skill source)
+├─ skill-doctor/          (skill source)
+├─ *.skill                (installable packages)
+├─ Job Application Workflow/
+│  ├─ Instructions/
+│  ├─ Inputs/
+│  └─ Outputs/
+├─ Build Workshops/       (course PDFs, reference only)
+├─ session-3-data/        (test dataset)
+├─ skill-audits/          (dated reports)
+└─ archive/               (retired, nothing live)</pre>
+          </div>
+        </div>
+        ${renderSteps([
+          "Keep skill sources separate from packaged, installable skills",
+          "Keep workflow configuration (rules) separate from its inputs and outputs",
+          "Archive anything retired so the live folder stays clean"
+        ])}
+      `,
+      docs: fileOrgDoc
+    },
+    {
+      title: "AI Context File",
+      desc: "A persistent context file that teaches my AI tool who I am, what I do, and how I work — loaded into every chat automatically.",
+      status: "live",
+      icon: "🧠",
+      build: renderSteps([
+        "<strong>About Me</strong> — who I am and the context I bring to every conversation",
+        "<strong>Goals</strong> — what I'm generally trying to accomplish across projects",
+        "<strong>How I Like AI to Respond</strong> — tone, format, and communication preferences",
+        "<strong>Rules</strong> — hard constraints the AI should never break",
+        "<strong>Tools</strong> — the tools, skills, and connectors available to reach for",
+        "<strong>Key Files</strong> — the specific files and folders the AI should check first"
+      ]),
+      docs: contextFileDoc
+    },
+    {
+      title: "Skills Library",
+      desc: "A library of the AI skills I built or installed that turn one-off prompts into repeatable workflows.",
+      status: "live",
+      icon: "📚",
+      build: renderSteps([
+        "<code>animation-skill</code> — entrance and build-in animations for slide decks",
+        "<code>email-voice</code> — source workspace behind my voice analysis",
+        "<code>finding-deck</code> — turns a dataset into a one-finding slide deck",
+        "<code>interview-prep</code> — full interview prep docs from my real CV",
+        "<code>referral-reach</code> — finds people to contact and drafts outreach",
+        "<code>skill-doctor</code> — audits my skills library for problems",
+        "<code>gold-mode</code> — toggleable metallic-gold theme for this site",
+        "<code>humanize-writing</code> — applies my voice guide to any draft",
+        "<code>cover-letter-voice</code> — drafts cover letters in my own voice",
+        "<code>job-application-pack</code> — full application pack for one posting",
+        "<code>email-manager</code> — triages my inbox and drafts replies every morning",
+        "<code>dave2-design</code> — the illustrated design system this site is built from"
+      ]),
+      docs: skillsLibraryDoc
+    }
   ];
 
   const grid = document.getElementById('projectsGrid');
